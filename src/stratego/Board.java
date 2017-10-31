@@ -8,7 +8,9 @@ public class Board {
     private final static int NUM_COLUMNS = 10;      
     private static Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];
 
+    
     public static void Draw(Graphics2D g) {
+        
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;

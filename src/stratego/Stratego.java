@@ -7,11 +7,21 @@ import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import java.io.*;
+import javax.sound.sampled.*;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.io.File;
+
 public class Stratego extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
 
+    Image background;
+    
     public static void main(String[] args) {
         Stratego frame = new Stratego();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -104,6 +114,8 @@ public class Stratego extends JFrame implements Runnable {
             return;
         }
         
+        g.drawImage(background,Window.getX(0),Window.getY(0),
+            Window.getWidth2(),Window.getHeight2(),this);
               
         Board.Draw(g);
 
@@ -138,7 +150,7 @@ public class Stratego extends JFrame implements Runnable {
                 Window.xsize = getSize().width;
                 Window.ysize = getSize().height;
             }
-
+            background = Toolkit.getDefaultToolkit().getImage("./background.png");
             reset();
 
         }
