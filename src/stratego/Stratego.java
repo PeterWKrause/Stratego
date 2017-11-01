@@ -21,6 +21,7 @@ public class Stratego extends JFrame implements Runnable {
     Graphics2D g;
 
     Image background;
+    private static boolean deployPhase = true;
     
     public static void main(String[] args) {
         Stratego frame = new Stratego();
@@ -34,8 +35,8 @@ public class Stratego extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
 
                 if (e.BUTTON1 == e.getButton() ) {
-                    
-                    
+                    if(deployPhase)
+                    Board.AddPiecePixel(e.getX(),e.getY());
                 }
 
                 if (e.BUTTON3 == e.getButton()) {
@@ -139,7 +140,8 @@ public class Stratego extends JFrame implements Runnable {
     
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
-
+        Board.Reset();
+        deployPhase = true;
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {
