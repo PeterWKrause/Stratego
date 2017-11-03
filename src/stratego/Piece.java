@@ -24,8 +24,8 @@ public class Piece {
     public void draw(Graphics2D g,int _row,int _column,
     int xdelta,int ydelta) {
         g.setColor(color); 
-        g.fillRect(Window.getX(column*xdelta)+20,
-        Window.getY(row*ydelta)+20,xdelta-20,ydelta-20);
+        g.fillRect(Window.getX(column*xdelta)+5,
+        Window.getY(row*ydelta)+5,xdelta-10,ydelta-10);
         
         g.setColor(Color.white);
         g.setFont(new Font("Arial",Font.PLAIN,30));
