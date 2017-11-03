@@ -23,11 +23,25 @@ public class Stratego extends JFrame implements Runnable {
     Image background;
     private static boolean deployPhase = true;
     
+    
     public static void main(String[] args) {
         Stratego frame = new Stratego();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        
+        System.out.println("Welcome to Stratego!");
+        System.out.println("This is the deployment phase, where you will arrange your pieces on your side of the board.");
+        System.out.println("=======================================");
+        Commands.AvailablePieces();
+        System.out.println("Left-click anywhere on your side of the board to place a piece. (Default piece is Flag)");
+        System.out.println("Enter Deployment Phase Commands here by pressing space first:");
+        System.out.println("Waiting on opponent...");
+        System.out.println("=======================================");
+        System.out.println("We are now entering the battle phase");
+        System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
+        System.out.println("Enter Battle Phase Commands here by pressing space first:");
+
     }
 
     public Stratego() {
@@ -71,6 +85,8 @@ public class Stratego extends JFrame implements Runnable {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
+                } else if (e.VK_SPACE == e.getKeyCode()) {
+                    Commands.readCommand();
                 }
                 repaint();
             }
