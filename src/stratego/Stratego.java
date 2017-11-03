@@ -52,7 +52,7 @@ public class Stratego extends JFrame implements Runnable {
                 if (e.BUTTON1 == e.getButton() ) {
                     
                 if(deployPhase){
-                    Board.AddPiecePixel(e.getX(),e.getY(),g);
+                    Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
                     if(count ==2)
                         deployPhase = false;

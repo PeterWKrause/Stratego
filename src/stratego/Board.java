@@ -52,14 +52,11 @@ public class Board {
                 }
             }
         }                
-<<<<<<< Updated upstream
+
         
-    }  
-    public static void AddPiecePixel(int xpixel,int ypixel,Graphics2D g) {
-=======
     }
     public static void AddPiecePixel(int xpixel,int ypixel) {
->>>>>>> Stashed changes
+
         
         
         int ydelta = Window.getHeight2()/NUM_ROWS;
@@ -77,7 +74,7 @@ public class Board {
             zrow = (ypixel-Window.getY(0))/ydelta;
         }
         Color currentColor = Color.red;
-<<<<<<< Updated upstream
+
         if(board[zrow][zcol]==null ){
             if(board[zrow]!=board[4] && board[zrow]!=board[5])
            board[zrow][zcol] = new Piece(currentColor);
@@ -158,13 +155,9 @@ public class Board {
             newCol=selectedColumn;
             newRow=selectedRow+1;
            board[newRow][newCol] =board[selectedRow][selectedColumn];
-=======
-        if(board[zrow][zcol]==null){
-           board[zrow][zcol] = new Piece(currentColor);
-           
->>>>>>> Stashed changes
         }
         selected= false;
         board[selectedRow][selectedColumn]=null;
+
 }
 }
