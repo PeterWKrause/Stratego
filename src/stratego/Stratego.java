@@ -22,6 +22,7 @@ public class Stratego extends JFrame implements Runnable {
 
     Image background;
     private static boolean deployPhase = true;
+    private static int count = 0;
     
     
     public static void main(String[] args) {
@@ -49,8 +50,16 @@ public class Stratego extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
 
                 if (e.BUTTON1 == e.getButton() ) {
-                    if(deployPhase)
-                    Board.AddPiecePixel(e.getX(),e.getY());
+                    
+                if(deployPhase){
+                    Board.AddPiecePixel(e.getX(),e.getY(),g);
+                    count++;
+                    if(count ==2)
+                        deployPhase = false;
+                }
+                else if(!deployPhase){
+                    Board.selectPiece(e.getX(),e.getY());
+                    }
                 }
 
                 if (e.BUTTON3 == e.getButton()) {
@@ -80,9 +89,17 @@ public class Stratego extends JFrame implements Runnable {
 
             public void keyPressed(KeyEvent e) {
                 if (e.VK_UP == e.getKeyCode()) {
+                    if(Board.selected)
+                    Board.movePiece(3);
                 } else if (e.VK_DOWN == e.getKeyCode()) {
+                    if(Board.selected)
+                    Board.movePiece(4);
                 } else if (e.VK_LEFT == e.getKeyCode()) {
+                    if(Board.selected)
+                    Board.movePiece(-1);
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
+                    if(Board.selected)
+                    Board.movePiece(1);
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 } else if (e.VK_SPACE == e.getKeyCode()) {
