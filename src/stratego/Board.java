@@ -99,7 +99,7 @@ public class Board {
         if(board[zrow][zcol]!=null){
         selectedRow = zrow;
         selectedColumn = zcol;
-         board[selectedRow][selectedColumn].setColor(Color.yellow);
+         board[selectedRow][selectedColumn].setColor(Color.MAGENTA);
          selected = true;
         }
     }
@@ -135,29 +135,38 @@ public class Board {
     public static void movePiece(int move){
         int newRow=0;
         int newCol=0;
+        boolean test = false;
         
-        if(move==-1){
+        if(move==-1&& selectedColumn!=0){
             newCol=selectedColumn-1;
             newRow=selectedRow;
            board[newRow][newCol] =board[selectedRow][selectedColumn]; 
+           test = true;
         }
-        else if(move==1){
+        else if(move==1&& selectedColumn!=NUM_COLUMNS-1){
             newCol=selectedColumn+1;
             newRow=selectedRow;
            board[newRow][newCol] = board[selectedRow][selectedColumn];
+           test =true;
         }
-        else if(move==3){
+        else if(move==3 && selectedRow!=0){
             newCol=selectedColumn;
             newRow=selectedRow-1;
            board[newRow][newCol] =board[selectedRow][selectedColumn];
+           test =true;
         }
-        else if(move==4){
+        else if(move==4 && selectedRow!=NUM_ROWS-1){
             newCol=selectedColumn;
             newRow=selectedRow+1;
            board[newRow][newCol] =board[selectedRow][selectedColumn];
-        }
+           test =true;
+            }
+        
+        if(test==true){
         selected= false;
         board[selectedRow][selectedColumn]=null;
-
+        board[newRow][newCol].setColor(Color.red);
+        }
+        
 }
 }
