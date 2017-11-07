@@ -8,9 +8,8 @@ public class Piece {
     private int rank;
     private int row;
     private int column;
-<<<<<<< Updated upstream
-    private boolean mobile;
-    
+  private boolean mobile;
+    private boolean hidden;
     
     static int numBombs = 6;
     static int numFlags = 1;
@@ -31,15 +30,8 @@ public class Piece {
         column = _col;
         rank = _rank;
         mobile = _mobile;
-=======
-    private boolean hidden;
-    Piece(Color _color, int _row, int _column){
-        color=_color;
-        row = _row;
-        column = _column;
-        rank = (int)(Math.random()*5);
-        hidden = true;
->>>>>>> Stashed changes
+
+    
     }
     public Color getColor()
     {

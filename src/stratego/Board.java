@@ -78,14 +78,9 @@ public class Board {
         Color currentColor = Color.red;
 
         if(board[zrow][zcol]==null ){
-<<<<<<< Updated upstream
             if(board[zrow]!=board[4] && board[zrow]!=board[5]){
             board[zrow][zcol] = Piece.Create(Commands.ReadRank(),currentColor, zrow, zcol);
             }
-=======
-            if(board[zrow]!=board[4] && board[zrow]!=board[5])
-           board[zrow][zcol] = new Piece(currentColor,zrow,zcol);
->>>>>>> Stashed changes
         }
         
 }
