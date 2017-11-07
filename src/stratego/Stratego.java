@@ -35,13 +35,9 @@ public class Stratego extends JFrame implements Runnable {
         System.out.println("This is the deployment phase, where you will arrange your pieces on your side of the board.");
         System.out.println("=======================================");
         Commands.AvailablePieces();
-        System.out.println("Left-click anywhere on your side of the board to place a piece. (Default piece is Flag)");
-        System.out.println("Enter Deployment Phase Commands here by pressing space first:");
+        System.out.println("Left-click anywhere on your side of the board to place a piece.");
+        System.out.println("Enter Deployment Phase Commands by pressing space first");
         System.out.println("Waiting on opponent...");
-        System.out.println("=======================================");
-        System.out.println("We are now entering the battle phase");
-        System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
-        System.out.println("Enter Battle Phase Commands here by pressing space first:");
 
     }
 
@@ -54,8 +50,13 @@ public class Stratego extends JFrame implements Runnable {
                 if(deployPhase){
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
-                    if(count ==2)
-                        deployPhase = false;
+                    if(count ==1){
+                        deployPhase = false;                        
+                        System.out.println("=======================================");
+                        System.out.println("We are now entering the battle phase");
+                        System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
+                        System.out.println("Enter Battle Phase Commands by pressing space first:");
+                    }
                 }
                 else if(!deployPhase){
                     Board.selectPiece(e.getX(),e.getY());
@@ -207,5 +208,8 @@ public class Stratego extends JFrame implements Runnable {
         }
         relaxer = null;
     }    
+    public static void decreaseCount(){
+    count--;
+}
     
 }
