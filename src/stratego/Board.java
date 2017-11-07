@@ -18,6 +18,7 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
+            
         }
 
     }
@@ -52,14 +53,11 @@ public class Board {
                 }
             }
         }                
-<<<<<<< Updated upstream
+
         
-    }  
-    public static void AddPiecePixel(int xpixel,int ypixel,Graphics2D g) {
-=======
     }
     public static void AddPiecePixel(int xpixel,int ypixel) {
->>>>>>> Stashed changes
+
         
         
         int ydelta = Window.getHeight2()/NUM_ROWS;
@@ -76,14 +74,38 @@ public class Board {
             zcol = (xpixel-Window.getX(0))/xdelta;
             zrow = (ypixel-Window.getY(0))/ydelta;
         }
+        else return;
         Color currentColor = Color.red;
-<<<<<<< Updated upstream
+
         if(board[zrow][zcol]==null ){
-            if(board[zrow]!=board[4] && board[zrow]!=board[5])
-           board[zrow][zcol] = new Piece(currentColor);
+            if(board[zrow]!=board[4] && board[zrow]!=board[5]){
+            board[zrow][zcol] = Piece.Create(Commands.ReadRank(),currentColor, zrow, zcol);
+            }
         }
         
 }
+    public static boolean testSpot(int xpixel, int ypixel){
+        int ydelta = Window.getHeight2()/NUM_ROWS;
+        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+
+        int zcol = 0;
+        int zrow = 0;
+        
+        if (xpixel-Window.getX(0) > 0 &&
+            ypixel-Window.getY(0) > 0 &&
+            xpixel-Window.getX(0) < xdelta*NUM_COLUMNS &&
+            ypixel-Window.getY(0) < ydelta*NUM_ROWS)
+        {
+            zcol = (xpixel-Window.getX(0))/xdelta;
+            zrow = (ypixel-Window.getY(0))/ydelta;
+        }
+        else return(false);
+        if(board[zrow][zcol]==null ){
+            if(board[zrow]!=board[4] && board[zrow]!=board[5])
+           return(true);
+        }
+        return(false);
+    }
     public static void selectPiece(int xpixel,int ypixel){
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
@@ -102,7 +124,7 @@ public class Board {
         if(board[zrow][zcol]!=null){
         selectedRow = zrow;
         selectedColumn = zcol;
-         board[selectedRow][selectedColumn].setColor(Color.yellow);
+         board[selectedRow][selectedColumn].setColor(Color.magenta);
          selected = true;
         }
     }
@@ -138,33 +160,93 @@ public class Board {
     public static void movePiece(int move){
         int newRow=0;
         int newCol=0;
+        boolean test = false;
         
-        if(move==-1){
+        if(move==-1&& selectedColumn!=0){//move left
+            if(selectedColumn==4 && (selectedRow==4|| selectedRow==5))
+                return;
+            if(selectedColumn==8 && (selectedRow==4|| selectedRow==5))
+                return;
             newCol=selectedColumn-1;
             newRow=selectedRow;
+            if(board[newRow][newCol]!=null){
+                if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
+                return;
+            }
            board[newRow][newCol] =board[selectedRow][selectedColumn]; 
+           test = true;
+        
         }
-        else if(move==1){
+        else if(move==1&& selectedColumn!=NUM_COLUMNS-1){//move right
+            if(selectedColumn==5 && (selectedRow==4|| selectedRow==5))
+                return;
+            if(selectedColumn==1 && (selectedRow==4|| selectedRow==5))
+                return;
             newCol=selectedColumn+1;
             newRow=selectedRow;
+            if(board[newRow][newCol]!=null){
+                if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
+                return;
+            }
            board[newRow][newCol] = board[selectedRow][selectedColumn];
+           test =true;
         }
-        else if(move==3){
+        else if(move==3 && selectedRow!=0){ //move up
+            if(selectedRow==6 && (selectedColumn==2|| selectedColumn==3))
+                return;
+            if(selectedRow==6 && (selectedColumn==6|| selectedColumn==7))
+                return;
             newCol=selectedColumn;
             newRow=selectedRow-1;
+            if(board[newRow][newCol]!=null){
+                if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
+                return;
+            }
            board[newRow][newCol] =board[selectedRow][selectedColumn];
+           test =true;
         }
-        else if(move==4){
+        else if(move==4 && selectedRow!=NUM_ROWS-1){ //move down
+            if(selectedRow==3 && (selectedColumn==2|| selectedColumn==3))
+                return;
+            if(selectedRow==3 && (selectedColumn==6|| selectedColumn==7))
+                return;
             newCol=selectedColumn;
             newRow=selectedRow+1;
+            if(board[newRow][newCol]!=null){
+                if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
+                return;
+                
+            }
            board[newRow][newCol] =board[selectedRow][selectedColumn];
-=======
-        if(board[zrow][zcol]==null){
-           board[zrow][zcol] = new Piece(currentColor);
-           
->>>>>>> Stashed changes
-        }
+           test =true;
+            }
+        
+        if(test==true &&board[newRow][newCol]!=null){
         selected= false;
         board[selectedRow][selectedColumn]=null;
+        board[newRow][newCol].setColor(Color.red);
+        }
+        
 }
+     public static boolean strikePiece(int defendingRow, int defendingCol,int attackingRow,int attackingCol){
+         board[defendingRow][defendingCol].setHidden(false);
+         board[attackingRow][attackingCol].setHidden(false);
+         
+         //attacker wins
+         if(board[defendingRow][defendingCol].getRank()<board[attackingRow][attackingCol].getRank()){
+        board[defendingRow][defendingCol]=null; 
+        return(true);
+         }//defender wins
+         else if(board[defendingRow][defendingCol].getRank()>board[attackingRow][attackingCol].getRank()){
+        board[attackingRow][attackingCol]=null;
+             board[defendingRow][defendingCol] = board[defendingRow][defendingCol];
+             return(false);
+         }//tie
+         else if(board[defendingRow][defendingCol].getRank()==board[attackingRow][attackingCol].getRank()){
+        board[defendingRow][defendingCol]=null; 
+        board[attackingRow][attackingCol]=null;
+        return(true);
+         }
+         return(false);
+     }
 }

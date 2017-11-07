@@ -7,18 +7,18 @@ public class Commands {
     
     public static void AvailablePieces(){
         System.out.println("Your available pieces are as follows:");
-        System.out.println("1 Flag");
-        System.out.println("6 Bombs");
-        System.out.println("1 Spy");
-        System.out.println("8 Scouts");
-        System.out.println("5 Miners");
-        System.out.println("4 Sergeants");
-        System.out.println("4 Lieutenants");
-        System.out.println("4 Captains");
-        System.out.println("3 Majors");
-        System.out.println("2 Colonels");
-        System.out.println("1 General");
-        System.out.println("1 Marshall");
+        System.out.println(Piece.numFlags + " Flag(s)");
+        System.out.println(Piece.numBombs + " Bomb(s)");
+        System.out.println(Piece.numSpies + " Spy");
+        System.out.println(Piece.numScouts + " Scout(s)");
+        System.out.println(Piece.numMiners + " Miner(s)");
+        System.out.println(Piece.numSergeants + " Sergeant(s)");
+        System.out.println(Piece.numLieutenants + " Lieutenant(s)");
+        System.out.println(Piece.numCaptains + " Captain(s)");
+        System.out.println(Piece.numMajors + " Major(s)");
+        System.out.println(Piece.numColonels + " Colonel(s)");
+        System.out.println(Piece.numGenerals + " General(s)");
+        System.out.println(Piece.numMarshalls + " Marshall(s)");
         System.out.println("=======================================");        
     }
     
@@ -76,6 +76,7 @@ public class Commands {
     
     public static void readCommand()
     {
+        System.out.println("Enter command here:");
         String str = read();
         if (!str.matches("Help"))
         {
@@ -135,6 +136,13 @@ public class Commands {
         }                 
     }
 
+    public static int ReadRank(){
+        System.out.println("Enter the rank of the piece you wish to place: ");
+	String str = read();
+	int num = Integer.parseInt(str.trim());
+	return (num);
+    }
+    
     public static String read()
     {
             byte [] buffer = new byte[10];

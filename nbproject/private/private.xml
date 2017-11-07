@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/263005078/Google%20Drive/CS2/CS2/Stratego/src/stratego/Stratego.java</file>
             <file>file:/C:/Users/263005078/Google%20Drive/CS2/CS2/Stratego/src/stratego/Board.java</file>
             <file>file:/C:/Users/263005078/Google%20Drive/CS2/CS2/Stratego/src/stratego/Window.java</file>
@@ -13,6 +14,14 @@
             <file>file:/C:/Users/263005078/Google%20Drive/CS2/CS2/Stratego/src/stratego/Miner.java</file>
             <file>file:/C:/Users/263005078/Google%20Drive/CS2/CS2/Stratego/src/stratego/Scout.java</file>
             <file>file:/C:/Users/263005078/Google%20Drive/CS2/CS2/Stratego/src/stratego/Commands.java</file>
+=======
+            <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Miner.java</file>
+            <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Piece.java</file>
+            <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Board.java</file>
+            <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Flag.java</file>
+            <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Scout.java</file>
+            <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Stratego.java</file>
+>>>>>>> 7b88d81e014d99710c03fe5a4d43922700aa1e69
         </group>
     </open-files>
 </project-private>
