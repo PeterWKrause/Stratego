@@ -8,6 +8,7 @@ public class Piece {
     private int rank;
     private int row;
     private int column;
+<<<<<<< Updated upstream
     private boolean mobile;
     
     
@@ -30,6 +31,15 @@ public class Piece {
         column = _col;
         rank = _rank;
         mobile = _mobile;
+=======
+    private boolean hidden;
+    Piece(Color _color, int _row, int _column){
+        color=_color;
+        row = _row;
+        column = _column;
+        rank = (int)(Math.random()*5);
+        hidden = true;
+>>>>>>> Stashed changes
     }
     public Color getColor()
     {
@@ -45,11 +55,11 @@ public class Piece {
         g.fillRect(Window.getX(column*xdelta)+5,
         Window.getY(row*ydelta)+5,xdelta-10,ydelta-10);
         
+//        if(!hidden){
         g.setColor(Color.white);
         g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("" + rank,Window.getX(column*xdelta)+30,
-        Window.getY(row*ydelta)+40); 
-
+        g.drawString("" + rank,Window.getX(column*xdelta)+30,Window.getY(row*ydelta)+40); 
+//        }
         row = _row;
         column = _column;
     }
@@ -109,4 +119,8 @@ public class Piece {
     public void setColor(Color _color){
         color = _color;
     }
+    public void setHidden(boolean _hidden){
+        hidden = _hidden;
+    }
+    
 }
