@@ -114,5 +114,8 @@ public class Piece {
     public void setHidden(boolean _hidden){
         hidden = _hidden;
     }
+    public void RankUp(){
+        rank++;
+    }
     
 }

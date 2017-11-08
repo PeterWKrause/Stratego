@@ -49,16 +49,13 @@ public class Stratego extends JFrame implements Runnable {
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
 
-                    if(count ==5){
+                    if(count ==2){
                         deployPhase = false;                        
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
                         System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
                         System.out.println("Enter Battle Phase Commands by pressing space first:");
                     }
-
-                    if(count ==5)
-                        deployPhase = false;
 
                 }
                 else if(!deployPhase){

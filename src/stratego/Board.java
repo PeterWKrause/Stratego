@@ -10,6 +10,8 @@ public class Board {
     private static int selectedRow;
     private static int selectedColumn;
     public static boolean selected = false;
+    public static boolean Victory = false;
+    
     public static void Reset() {
         for (int zi = 0;zi<NUM_ROWS;zi++)
         {
@@ -18,6 +20,7 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
+            Victory=false;
             
         }
 
@@ -231,15 +234,39 @@ public class Board {
      public static boolean strikePiece(int defendingRow, int defendingCol,int attackingRow,int attackingCol){
          board[defendingRow][defendingCol].setHidden(false);
          board[attackingRow][attackingCol].setHidden(false);
-         
-         //attacker wins
-         if(board[defendingRow][defendingCol].getRank()<board[attackingRow][attackingCol].getRank()){
+         //defender is flag
+         if(board[defendingRow][defendingCol] instanceof Flag){
+            board[defendingRow][defendingCol]=null;     
+            if(board[attackingRow][attackingCol].getRank()<10)
+            board[attackingRow][attackingCol].RankUp();
+            Victory = true;
+            return(true);
+         }//attacker is miner and defender is bomb
+         else if(board[attackingRow][attackingCol] instanceof Miner){
+             if(board[defendingRow][defendingCol] instanceof Bomb){
+                board[defendingRow][defendingCol]=null;     
+                if(board[attackingRow][attackingCol].getRank()<10)
+                board[attackingRow][attackingCol].RankUp();
+                return(true);                 
+             }
+         }//attacker is spy and defender is rank 10
+         else if(board[attackingRow][attackingCol] instanceof Spy){
+             if(board[defendingRow][defendingCol].getRank()==10){
+                board[defendingRow][defendingCol]=null;     
+                return(true);
+             }
+         }//attacker wins
+         else if(board[defendingRow][defendingCol].getRank()<board[attackingRow][attackingCol].getRank()){
         board[defendingRow][defendingCol]=null; 
+        if(board[attackingRow][attackingCol].getRank()<10)
+        board[attackingRow][attackingCol].RankUp();
         return(true);
          }//defender wins
          else if(board[defendingRow][defendingCol].getRank()>board[attackingRow][attackingCol].getRank()){
         board[attackingRow][attackingCol]=null;
              board[defendingRow][defendingCol] = board[defendingRow][defendingCol];
+             if(board[defendingRow][defendingCol].getRank()<10)
+             board[defendingRow][defendingCol].RankUp();
              return(false);
          }//tie
          else if(board[defendingRow][defendingCol].getRank()==board[attackingRow][attackingCol].getRank()){
