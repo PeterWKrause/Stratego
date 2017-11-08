@@ -49,13 +49,22 @@ public class Piece {
     int xdelta,int ydelta) {
         g.setColor(color); 
         g.fillRect(Window.getX(column*xdelta)+5,
-        Window.getY(row*ydelta)+5,xdelta-10,ydelta-10);
-        
+        Window.getY(row*ydelta)+5,xdelta-10,ydelta-10);        
 //        if(!hidden){
-        g.setColor(Color.white);
-        g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("" + rank,Window.getX(column*xdelta)+30,Window.getY(row*ydelta)+40); 
+        if(rank >= 10)
+        {
+            g.setColor(Color.white);
+            g.setFont(new Font("Arial",Font.PLAIN,30));
+            g.drawString("" + rank,Window.getX(column*xdelta)+(xdelta/2)-18,Window.getY(row*ydelta)+(ydelta/2)+8); 
+        }
+        else
+        {
+            g.setColor(Color.white);
+            g.setFont(new Font("Arial",Font.PLAIN,30));
+            g.drawString("" + rank,Window.getX(column*xdelta)+(xdelta/2)-8,Window.getY(row*ydelta)+(ydelta/2)+8); 
+        }
 //        }
+        
         row = _row;
         column = _column;
     }
