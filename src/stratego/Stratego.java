@@ -49,7 +49,11 @@ public class Stratego extends JFrame implements Runnable {
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
 
+<<<<<<< Updated upstream
                     if(count ==2){
+=======
+                    if(count ==3){
+>>>>>>> Stashed changes
                         deployPhase = false;                        
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
@@ -57,6 +61,11 @@ public class Stratego extends JFrame implements Runnable {
                         System.out.println("Enter Battle Phase Commands by pressing space first:");
                     }
 
+<<<<<<< Updated upstream
+=======
+                    
+
+>>>>>>> Stashed changes
                 }
                 else if(!deployPhase){
                     Board.selectPiece(e.getX(),e.getY());

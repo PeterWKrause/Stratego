@@ -6,12 +6,16 @@ import java.awt.*;
 public class Board {
     private final static int NUM_ROWS = 10;
     private final static int NUM_COLUMNS = 10;      
-    private static Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];
-    private static int selectedRow;
-    private static int selectedColumn;
+    public static Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];
+    public static int selectedRow;
+    public static int selectedColumn;
     public static boolean selected = false;
+<<<<<<< Updated upstream
     public static boolean Victory = false;
     
+=======
+    public static boolean turn = false;
+>>>>>>> Stashed changes
     public static void Reset() {
         for (int zi = 0;zi<NUM_ROWS;zi++)
         {
@@ -20,8 +24,12 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
+<<<<<<< Updated upstream
             Victory=false;
             
+=======
+            turn = false;
+>>>>>>> Stashed changes
         }
 
     }
@@ -78,11 +86,17 @@ public class Board {
             zrow = (ypixel-Window.getY(0))/ydelta;
         }
         else return;
+        
         Color currentColor = Color.red;
-
+        if(turn)
+            currentColor = Color.blue;
+        
         if(board[zrow][zcol]==null ){
             if(board[zrow]!=board[4] && board[zrow]!=board[5]){
+                if(!turn)
             board[zrow][zcol] = Piece.Create(Commands.ReadRank(),currentColor, zrow, zcol);
+                else
+                    board[zrow][zcol] = Piece.Create(Commands.ReadRank(),currentColor, zrow, zcol);
             }
         }
         
@@ -131,39 +145,15 @@ public class Board {
          selected = true;
         }
     }
-//    public static void movePieceHorizontal(int move){
-//        board[selectedRow][selectedColumn].moveHorizontal(move);
-//    }
-//    public static void movePieceVertical(int move){
-//        selectedPiece[selectedRow][selectedColumn].moveVertical(move);
-//    }
-//    public static void movePiece(int xpixel,int ypixel){
-//        if(board[selectedRow][selectedColumn]!=null){
-//        int ydelta = Window.getHeight2()/NUM_ROWS;
-//        int xdelta = Window.getWidth2()/NUM_COLUMNS;
-//
-//        int zcol = 0;
-//        int zrow = 0;
-//        
-//        if (xpixel-Window.getX(0) > 0 &&
-//            ypixel-Window.getY(0) > 0 &&
-//            xpixel-Window.getX(0) < xdelta*NUM_COLUMNS &&
-//            ypixel-Window.getY(0) < ydelta*NUM_ROWS)
-//        {
-//            zcol = (xpixel-Window.getX(0))/xdelta;
-//            zrow = (ypixel-Window.getY(0))/ydelta;
-//        }
-//        if(board[zrow][zcol] == board[selectedRow][selectedColumn+1] || board[zrow][zcol] == board[selectedRow][selectedColumn-1] 
-//                || board[zrow][zcol] == board[selectedRow-1][selectedColumn] || board[zrow][zcol] == board[selectedRow+1][selectedColumn]){
-//        board[selectedRow][selectedColumn]=null;
-//        board[zrow][zcol] = new Piece(Color.RED);
-//        }
-//    }
-//    }
+    
     public static void movePiece(int move){
         int newRow=0;
         int newCol=0;
         boolean test = false;
+        if(turn == false)
+            turn = true;
+        else
+            Board.turn = false;
         
         if(move==-1&& selectedColumn!=0){//move left
             if(selectedColumn==4 && (selectedRow==4|| selectedRow==5))
@@ -173,6 +163,8 @@ public class Board {
             newCol=selectedColumn-1;
             newRow=selectedRow;
             if(board[newRow][newCol]!=null){
+                if(!testTeams(newRow,newCol,selectedRow,selectedColumn))
+                   return;
                 if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
                 return;
             }
@@ -188,6 +180,8 @@ public class Board {
             newCol=selectedColumn+1;
             newRow=selectedRow;
             if(board[newRow][newCol]!=null){
+                if(!testTeams(newRow,newCol,selectedRow,selectedColumn))
+                   return;
                 if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
                 return;
             }
@@ -202,6 +196,8 @@ public class Board {
             newCol=selectedColumn;
             newRow=selectedRow-1;
             if(board[newRow][newCol]!=null){
+                if(!testTeams(newRow,newCol,selectedRow,selectedColumn))
+                   return;
                 if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
                 return;
             }
@@ -216,6 +212,8 @@ public class Board {
             newCol=selectedColumn;
             newRow=selectedRow+1;
             if(board[newRow][newCol]!=null){
+                if(!testTeams(newRow,newCol,selectedRow,selectedColumn))
+                   return;
                 if(!strikePiece(newRow,newCol,selectedRow,selectedColumn))
                 return;
                 
@@ -275,5 +273,11 @@ public class Board {
         return(true);
          }
          return(false);
+     }
+     public static boolean testTeams(int _newRow,int _newCol,int _selectedRow,int _selectedCol){
+         if(board[_newRow][_newCol].getTeam()==board[_selectedRow][_selectedCol].getTeam())
+             return(false);
+         else
+         return(true);
      }
 }

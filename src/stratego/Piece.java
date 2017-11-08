@@ -10,6 +10,7 @@ public class Piece {
     private int column;
   private boolean mobile;
     private boolean hidden;
+    private boolean team;
     
     static int numBombs = 6;
     static int numFlags = 1;
@@ -24,14 +25,17 @@ public class Piece {
     static int numGenerals = 1;
     static int numMarshalls = 1;
     
+    
     Piece(Color _color, int _row, int _col, int _rank, boolean _mobile){
         color = _color;
         row = _row;
         column = _col;
         rank = _rank;
         mobile = _mobile;
-
-    
+        if(color==Color.red)
+            team = false;
+        else
+            team = true;
     }
     public Color getColor()
     {
@@ -56,6 +60,10 @@ public class Piece {
         column = _column;
     }
     public static Piece Create(int _rank,Color currentColor,int zrow,int zcol){
+        if(Board.turn == false)
+            Board.turn = true;
+        else
+            Board.turn = false;
         if(_rank==0 && numFlags>0){
             numFlags--; 
             return(new Flag(currentColor, zrow, zcol)); }
@@ -114,8 +122,13 @@ public class Piece {
     public void setHidden(boolean _hidden){
         hidden = _hidden;
     }
+<<<<<<< Updated upstream
     public void RankUp(){
         rank++;
+=======
+    public boolean getTeam(){
+        return(team);
+>>>>>>> Stashed changes
     }
     
 }
