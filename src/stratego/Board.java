@@ -10,12 +10,9 @@ public class Board {
     public static int selectedRow;
     public static int selectedColumn;
     public static boolean selected = false;
-<<<<<<< Updated upstream
     public static boolean Victory = false;
-    
-=======
     public static boolean turn = false;
->>>>>>> Stashed changes
+    
     public static void Reset() {
         for (int zi = 0;zi<NUM_ROWS;zi++)
         {
@@ -24,12 +21,8 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
-<<<<<<< Updated upstream
             Victory=false;
-            
-=======
             turn = false;
->>>>>>> Stashed changes
         }
 
     }
@@ -117,11 +110,16 @@ public class Board {
             zrow = (ypixel-Window.getY(0))/ydelta;
         }
         else return(false);
-        if(board[zrow][zcol]==null ){
-            if(board[zrow]!=board[4] && board[zrow]!=board[5])
-           return(true);
-        }
-        return(false);
+        
+        if(board[zrow][zcol]!=null )
+            return(false);
+        if(board[zrow]==board[4] || board[zrow]==board[5])
+           return(false);
+            if(zrow>5 && turn!=false )
+                return(false);
+            if(zrow<4 && turn!=true)
+                return(false);
+            return(true);
     }
     public static void selectPiece(int xpixel,int ypixel){
         int ydelta = Window.getHeight2()/NUM_ROWS;
@@ -225,13 +223,14 @@ public class Board {
         if(test==true &&board[newRow][newCol]!=null){
         selected= false;
         board[selectedRow][selectedColumn]=null;
+        if(!board[newRow][newCol].getTeam())
         board[newRow][newCol].setColor(Color.red);
+        else
+        board[newRow][newCol].setColor(Color.blue);
         }
         
 }
      public static boolean strikePiece(int defendingRow, int defendingCol,int attackingRow,int attackingCol){
-         board[defendingRow][defendingCol].setHidden(false);
-         board[attackingRow][attackingCol].setHidden(false);
          //defender is flag
          if(board[defendingRow][defendingCol] instanceof Flag){
             board[defendingRow][defendingCol]=null;     
@@ -240,20 +239,21 @@ public class Board {
             Victory = true;
             return(true);
          }//attacker is miner and defender is bomb
-         else if(board[attackingRow][attackingCol] instanceof Miner){
-             if(board[defendingRow][defendingCol] instanceof Bomb){
+         else if(board[attackingRow][attackingCol] instanceof Miner
+                 && board[defendingRow][defendingCol] instanceof Bomb){
                 board[defendingRow][defendingCol]=null;     
                 if(board[attackingRow][attackingCol].getRank()<10)
                 board[attackingRow][attackingCol].RankUp();
                 return(true);                 
-             }
+             
          }//attacker is spy and defender is rank 10
-         else if(board[attackingRow][attackingCol] instanceof Spy){
-             if(board[defendingRow][defendingCol].getRank()==10){
+         else if(board[attackingRow][attackingCol] instanceof Spy 
+                 && board[defendingRow][defendingCol].getRank()==10){
+             
                 board[defendingRow][defendingCol]=null;     
                 return(true);
              }
-         }//attacker wins
+        //attacker wins
          else if(board[defendingRow][defendingCol].getRank()<board[attackingRow][attackingCol].getRank()){
         board[defendingRow][defendingCol]=null; 
         if(board[attackingRow][attackingCol].getRank()<10)

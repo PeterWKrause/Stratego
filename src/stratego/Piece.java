@@ -24,7 +24,17 @@ public class Piece {
     static int numColonels = 2;
     static int numGenerals = 1;
     static int numMarshalls = 1;
-    
+    public static Stratego stratego;
+    Image spy = Toolkit.getDefaultToolkit().getImage("./Spy.PNG");
+    Image scout = Toolkit.getDefaultToolkit().getImage("./Scout.PNG");
+    Image miner = Toolkit.getDefaultToolkit().getImage("./Miner.PNG");
+    Image  sergeant = Toolkit.getDefaultToolkit().getImage("./Sergeant.PNG");
+    Image lieutenant = Toolkit.getDefaultToolkit().getImage("./Lieutenant.PNG");
+    Image captain = Toolkit.getDefaultToolkit().getImage("./Captain.PNG");
+    Image major = Toolkit.getDefaultToolkit().getImage("./Major.PNG");
+    Image colonel = Toolkit.getDefaultToolkit().getImage("./Colonel.PNG");
+    Image general = Toolkit.getDefaultToolkit().getImage("./General.PNG");
+    Image marshal = Toolkit.getDefaultToolkit().getImage("./Marshal.PNG");
     
     Piece(Color _color, int _row, int _col, int _rank, boolean _mobile){
         color = _color;
@@ -47,27 +57,29 @@ public class Piece {
     }
     public void draw(Graphics2D g,int _row,int _column,
     int xdelta,int ydelta) {
+        
         g.setColor(color); 
-        g.fillRect(Window.getX(column*xdelta)+5,
-        Window.getY(row*ydelta)+5,xdelta-10,ydelta-10);        
-//        if(!hidden){
+        g.fillRect(Window.getX(column*xdelta),Window.getY(row*ydelta),xdelta,ydelta); 
+        g.drawImage(spy, Window.getX(column*xdelta)+10, Window.getY(row*ydelta)+10, xdelta-20, ydelta-20
+                , stratego);
         if(rank >= 10)
         {
-            g.setColor(Color.white);
+            g.setColor(Color.BLACK);
             g.setFont(new Font("Arial",Font.PLAIN,30));
             g.drawString("" + rank,Window.getX(column*xdelta)+(xdelta/2)-18,Window.getY(row*ydelta)+(ydelta/2)+8); 
         }
         else
         {
-            g.setColor(Color.white);
+            
+            g.setColor(Color.BLACK);
             g.setFont(new Font("Arial",Font.PLAIN,30));
             g.drawString("" + rank,Window.getX(column*xdelta)+(xdelta/2)-8,Window.getY(row*ydelta)+(ydelta/2)+8); 
         }
-//        }
+
         
         row = _row;
         column = _column;
-    }
+    }    
     public static Piece Create(int _rank,Color currentColor,int zrow,int zcol){
         if(Board.turn == false)
             Board.turn = true;
@@ -131,13 +143,15 @@ public class Piece {
     public void setHidden(boolean _hidden){
         hidden = _hidden;
     }
-<<<<<<< Updated upstream
+
     public void RankUp(){
         rank++;
-=======
+    }
     public boolean getTeam(){
         return(team);
->>>>>>> Stashed changes
+    }
+    public static void setObj(Stratego _obj){
+        stratego = _obj;
     }
     
 }

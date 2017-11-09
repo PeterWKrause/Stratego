@@ -23,6 +23,7 @@ public class Stratego extends JFrame implements Runnable {
     Image background;
     private static boolean deployPhase = true;
     private static int count = 0;
+    
     public static void main(String[] args) {
         Stratego frame = new Stratego();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -48,24 +49,14 @@ public class Stratego extends JFrame implements Runnable {
                 if(deployPhase && Board.testSpot(e.getX(),e.getY())){
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
-
-<<<<<<< Updated upstream
-                    if(count ==2){
-=======
-                    if(count ==3){
->>>>>>> Stashed changes
+                    
+                        if(count ==3){
                         deployPhase = false;                        
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
                         System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
                         System.out.println("Enter Battle Phase Commands by pressing space first:");
                     }
-
-<<<<<<< Updated upstream
-=======
-                    
-
->>>>>>> Stashed changes
                 }
                 else if(!deployPhase){
                     Board.selectPiece(e.getX(),e.getY());
@@ -162,7 +153,7 @@ public class Stratego extends JFrame implements Runnable {
             Window.getWidth2(),Window.getHeight2(),this);
               
         Board.Draw(g);
-
+        Piece.setObj(this);
         gOld.drawImage(image, 0, 0, null);
     }
     
