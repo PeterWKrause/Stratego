@@ -11,6 +11,10 @@ public class Board {
     public static int selectedColumn;
     public static boolean selected = false;
     public static boolean Victory = false;
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
     public static boolean turn = false;
     
     public static void Reset() {
@@ -22,9 +26,20 @@ public class Board {
             }
             selected = false;
             Victory=false;
+<<<<<<< Updated upstream
+=======
+            
+>>>>>>> Stashed changes
             turn = false;
         }
 
+    }
+    public static void ChangeDelayed(){
+        for(int zrow = 0; zrow<NUM_ROWS;zrow++)
+            for(int zcol = 0; zcol<NUM_COLUMNS;zcol++)
+                if(board[zrow][zcol]!=null)
+                    if(board[zrow][zcol].getDelayed())
+                        board[zrow][zcol].setDelayedFalse();
     }
     
     public static void Draw(Graphics2D g) {
@@ -139,25 +154,35 @@ public class Board {
         if(board[zrow][zcol]!=null){
         selectedRow = zrow;
         selectedColumn = zcol;
+        if(!board[selectedRow][selectedColumn].getMobile())
+            return;
          board[selectedRow][selectedColumn].setColor(Color.magenta);
          selected = true;
         }
     }
     
     public static void movePiece(int move){
+        if(board[selectedRow][selectedColumn].getDelayed() || !board[selectedRow][selectedColumn].getMobile())
+            return;
         int newRow=0;
         int newCol=0;
         boolean test = false;
-        if(turn == false)
+        if(turn == false){
             turn = true;
-        else
+            ChangeDelayed();
+        }
+        else{
             Board.turn = false;
+            ChangeDelayed();
+        }
         
         if(move==-1&& selectedColumn!=0){//move left
-            if(selectedColumn==4 && (selectedRow==4|| selectedRow==5))
-                return;
-            if(selectedColumn==8 && (selectedRow==4|| selectedRow==5))
-                return;
+            if(selectedColumn==4 && (selectedRow==4|| selectedRow==5)){
+                board[selectedRow][selectedColumn].setDelayedTrue();
+            }
+            if(selectedColumn==8 && (selectedRow==4|| selectedRow==5)){
+                board[selectedRow][selectedColumn].setDelayedTrue();
+            }
             newCol=selectedColumn-1;
             newRow=selectedRow;
             if(board[newRow][newCol]!=null){
@@ -172,9 +197,9 @@ public class Board {
         }
         else if(move==1&& selectedColumn!=NUM_COLUMNS-1){//move right
             if(selectedColumn==5 && (selectedRow==4|| selectedRow==5))
-                return;
+                board[selectedRow][selectedColumn].setDelayedTrue();
             if(selectedColumn==1 && (selectedRow==4|| selectedRow==5))
-                return;
+                board[selectedRow][selectedColumn].setDelayedTrue();
             newCol=selectedColumn+1;
             newRow=selectedRow;
             if(board[newRow][newCol]!=null){
@@ -188,9 +213,9 @@ public class Board {
         }
         else if(move==3 && selectedRow!=0){ //move up
             if(selectedRow==6 && (selectedColumn==2|| selectedColumn==3))
-                return;
+                board[selectedRow][selectedColumn].setDelayedTrue();
             if(selectedRow==6 && (selectedColumn==6|| selectedColumn==7))
-                return;
+                board[selectedRow][selectedColumn].setDelayedTrue();
             newCol=selectedColumn;
             newRow=selectedRow-1;
             if(board[newRow][newCol]!=null){
@@ -204,9 +229,9 @@ public class Board {
         }
         else if(move==4 && selectedRow!=NUM_ROWS-1){ //move down
             if(selectedRow==3 && (selectedColumn==2|| selectedColumn==3))
-                return;
+                board[selectedRow][selectedColumn].setDelayedTrue();
             if(selectedRow==3 && (selectedColumn==6|| selectedColumn==7))
-                return;
+                board[selectedRow][selectedColumn].setDelayedTrue();
             newCol=selectedColumn;
             newRow=selectedRow+1;
             if(board[newRow][newCol]!=null){
@@ -239,6 +264,7 @@ public class Board {
             Victory = true;
             return(true);
          }//attacker is miner and defender is bomb
+<<<<<<< Updated upstream
          else if(board[attackingRow][attackingCol] instanceof Miner
                  && board[defendingRow][defendingCol] instanceof Bomb){
                 board[defendingRow][defendingCol]=null;     
@@ -254,6 +280,18 @@ public class Board {
                 return(true);
              }
         //attacker wins
+=======
+         else if(board[attackingRow][attackingCol] instanceof Miner && board[defendingRow][defendingCol] instanceof Bomb){
+                board[defendingRow][defendingCol]=null;     
+                if(board[attackingRow][attackingCol].getRank()<10)
+                board[attackingRow][attackingCol].RankUp();
+                return(true);      
+         }//attacker is spy and defender is rank 10
+         else if(board[attackingRow][attackingCol] instanceof Spy && board[defendingRow][defendingCol].getRank()==10){
+            board[defendingRow][defendingCol]=null;     
+            return(true);
+         }//attacker wins
+>>>>>>> Stashed changes
          else if(board[defendingRow][defendingCol].getRank()<board[attackingRow][attackingCol].getRank()){
         board[defendingRow][defendingCol]=null; 
         if(board[attackingRow][attackingCol].getRank()<10)
