@@ -13,8 +13,12 @@ public class Board {
     public static boolean selected = false;
     public static boolean Victory = false;
     
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     public static boolean turn = false;
+    public static int TurnCount = 0;
     
     public static void Reset() {
         for (int zi = 0;zi<NUM_ROWS;zi++)
@@ -24,8 +28,13 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
+<<<<<<< Updated upstream
             Victory=false;
+=======
+            Victory = false;
+>>>>>>> Stashed changes
             turn = false;
+            TurnCount=0;
         }
 
     }
@@ -67,9 +76,27 @@ public class Board {
                     board[zi][zx].draw(g,zi,zx,xdelta,ydelta);
                 }
             }
-        }                
-
+        }  
         
+        if(!turn){
+        g.setColor(Color.RED);
+        g.setFont(new Font("Moire ExtraBold", Font.BOLD, 25));
+        g.drawString("Player 1's Turn" ,50,65 );
+        g.drawString("Turn " + TurnCount ,450,65 );
+        }
+        else{
+        g.setColor(Color.BLUE);
+        g.setFont(new Font("Moire ExtraBold", Font.BOLD, 25));
+        g.drawString("Player 2's Turn" ,50,65 );        
+        g.drawString("Turn " + TurnCount ,450,65 );
+        }
+        if(Victory){
+        g.setColor(Color.MAGENTA);
+        g.fillRect(-200, -200, Window.WINDOW_WIDTH*Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT*Window.WINDOW_HEIGHT);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Moire ExtraBold", Font.BOLD, 30));
+        g.drawString("Victory" ,Window.WINDOW_WIDTH/2 ,Window.WINDOW_HEIGHT/2 );             
+        }
     }
     public static void AddPiecePixel(int xpixel,int ypixel) {
         if(Stratego.start)
@@ -98,10 +125,14 @@ public class Board {
         
         if(board[zrow][zcol]==null ){
             if(board[zrow]!=board[4] && board[zrow]!=board[5]){
-                if(!turn)
-            board[zrow][zcol] = Piece.Create(Commands.ReadRank(),currentColor, zrow, zcol);
-                else
+                if(!turn){
+            board[zrow][zcol] = Piece.Create(Commands.ReadRank(),currentColor, zrow, zcol); 
+            if(board[zrow][zcol]!=null)
+            board[zrow][zcol].setName();}
+                else{
                     board[zrow][zcol] = Piece.Create(Commands.ReadRank(),currentColor, zrow, zcol);
+                    if(board[zrow][zcol]!=null)
+                    board[zrow][zcol].setName();}
             }
         }
         
@@ -170,10 +201,12 @@ public class Board {
         boolean test = false;
         if(turn == false){
             turn = true;
+            TurnCount++;
             ChangeDelayed();
         }
         else{
             Board.turn = false;
+            TurnCount++;
             ChangeDelayed();
         }
         

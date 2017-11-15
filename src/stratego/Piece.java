@@ -12,6 +12,7 @@ public class Piece {
     private boolean hidden;
     private boolean team;
     private boolean delayed = false;
+    private String name;
     
     static int numBombs = 6;
     static int numFlags = 1;
@@ -38,8 +39,12 @@ public class Piece {
     Image colonel = Toolkit.getDefaultToolkit().getImage("./Colonel.PNG");
     Image general = Toolkit.getDefaultToolkit().getImage("./General.PNG");
     Image marshal = Toolkit.getDefaultToolkit().getImage("./Marshal.PNG");
+<<<<<<< Updated upstream
     Image bomb = Toolkit.getDefaultToolkit().getImage("./Bomb.PNG");
     
+=======
+
+>>>>>>> Stashed changes
     static int numBombs2 = 6;
     static int numFlags2 = 1;
     static int numSpies2 = 1;
@@ -85,6 +90,32 @@ public class Piece {
     }
     public void setDelayedFalse(){
         delayed = false;
+    }
+    public void setName(){
+        if(rank == 0)
+            name = "Flag";
+        else if(rank == 1)
+            name = "Spy";
+        else if(rank == 2)
+            name = "Scout";        
+        else if(rank == 3)
+            name = "Miner";        
+        else if(rank == 4)
+            name = "Sergeant";
+        else if(rank == 5)
+            name = "Lieutenant";
+        else if(rank == 6)
+            name = "Captain";
+        else if(rank == 7)
+            name = "Major";
+        else if(rank == 8)
+            name = "Colonel";
+        else if(rank == 9)
+            name = "General";
+        else if(rank == 10)
+            name = "Marshall";
+        else if(rank == 11)
+            name = "Bomb";        
     }
 
     
@@ -142,7 +173,10 @@ public class Piece {
             g.setFont(new Font("Arial",Font.BOLD,15));
             g.drawString("" + rank,Window.getX(column*xdelta)-20+(xdelta/2)-3,Window.getY(row*ydelta)+(ydelta/2)-8); 
         }
-
+        
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial",Font.PLAIN,15));
+        g.drawString("" + name,Window.getX(column*xdelta),Window.getY(row*ydelta)+ydelta); 
         
         row = _row;
         column = _column;

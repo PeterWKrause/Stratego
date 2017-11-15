@@ -35,7 +35,7 @@ public class Commands {
     }
     
     public static void WhatIsScout(){
-    System.out.println("- Scout: This highly mobile unit can move an unlimited number of squares in any cardinal direction, although they cannot jump over any units. Base Rank: 2");    
+    System.out.println("- Scout: This highly mobile unit can move an unlimited number of squares in any cardinal direction, although they cannot jump over any units. Cannot move and attack in the same round. Base Rank: 2");    
     }
     
     public static void WhatIsMiner(){
