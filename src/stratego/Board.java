@@ -12,11 +12,6 @@ public class Board {
     public static int selectedColumn;
     public static boolean selected = false;
     public static boolean Victory = false;
-    
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     public static boolean turn = false;
     public static int TurnCount = 0;
     
@@ -28,11 +23,8 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
-<<<<<<< Updated upstream
             Victory=false;
-=======
-            Victory = false;
->>>>>>> Stashed changes
+
             turn = false;
             TurnCount=0;
         }

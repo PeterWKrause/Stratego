@@ -32,6 +32,9 @@ public class Stratego extends JFrame implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         
+        frame.setTitle("Stratego");
+        frame.setAlwaysOnTop(true);
+        
         System.out.println("Welcome to Stratego!");
         
 
@@ -52,7 +55,6 @@ public class Stratego extends JFrame implements Runnable {
         Commands.AvailablePieces();
         System.out.println("Left-click anywhere on your side of the board to place a piece.");
         System.out.println("Enter Deployment Phase Commands by pressing space first");
-        System.out.println("Waiting on opponent...");
         return;
                       }
                     }
@@ -60,33 +62,20 @@ public class Stratego extends JFrame implements Runnable {
                 if(deployPhase && Board.testSpot(e.getX(),e.getY())){
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
-<<<<<<< Updated upstream
 
-                    
-                        if(count ==3){
-
-
-                    if(count ==3){
-
-                        deployPhase = false;                        
-=======
-
+                    if(count ==40){
+                          Board.turn = true;
+                          System.out.println("Waiting on opponent...");
+                    }
                     if(count ==80){
                         Board.TurnCount++;
                         deployPhase = false;
                         Board.turn = false;
->>>>>>> Stashed changes
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
                         System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
                         System.out.println("Enter Battle Phase Commands by pressing space first:");
                     }
-<<<<<<< Updated upstream
-
-
-
-=======
->>>>>>> Stashed changes
                 }
                 else if(!deployPhase){
                     Board.selectPiece(e.getX(),e.getY());
@@ -98,8 +87,8 @@ public class Stratego extends JFrame implements Runnable {
                 }
                 repaint();
                 }
-            }
-            });   
+            })
+            ;   
     
 
 
@@ -165,7 +154,7 @@ public class Stratego extends JFrame implements Runnable {
         }
 //fill background
         
-        g.setColor(Color.MAGENTA);
+        g.setColor(Color.BLACK);
         g.fillRect(0, 0, Window.xsize, Window.ysize);
 
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};

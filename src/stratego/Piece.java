@@ -39,12 +39,8 @@ public class Piece {
     Image colonel = Toolkit.getDefaultToolkit().getImage("./Colonel.PNG");
     Image general = Toolkit.getDefaultToolkit().getImage("./General.PNG");
     Image marshal = Toolkit.getDefaultToolkit().getImage("./Marshal.PNG");
-<<<<<<< Updated upstream
     Image bomb = Toolkit.getDefaultToolkit().getImage("./Bomb.PNG");
     
-=======
-
->>>>>>> Stashed changes
     static int numBombs2 = 6;
     static int numFlags2 = 1;
     static int numSpies2 = 1;
@@ -174,8 +170,8 @@ public class Piece {
             g.drawString("" + rank,Window.getX(column*xdelta)-20+(xdelta/2)-3,Window.getY(row*ydelta)+(ydelta/2)-8); 
         }
         
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial",Font.PLAIN,15));
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial",Font.PLAIN,12));
         g.drawString("" + name,Window.getX(column*xdelta),Window.getY(row*ydelta)+ydelta); 
         
         row = _row;
@@ -185,7 +181,7 @@ public class Piece {
 
         if(_rank==0 && (numFlags>0 || numFlags2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -200,7 +196,7 @@ public class Piece {
             return(new Flag(currentColor, zrow, zcol)); }}
         else if(_rank==1 && (numSpies>0 || numSpies2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -215,7 +211,7 @@ public class Piece {
             return(new Spy(currentColor, zrow, zcol));}}
         else if(_rank==2 && (numScouts>0 || numScouts2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -230,7 +226,7 @@ public class Piece {
             return(new Scout(currentColor, zrow, zcol));}}
         else if(_rank==3 && (numMiners>0 || numMiners2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -245,7 +241,7 @@ public class Piece {
             return(new Miner(currentColor, zrow, zcol));}}
         else if(_rank==4 && (numSergeants>0 || numSergeants2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -260,7 +256,7 @@ public class Piece {
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==5 && (numLieutenants>0 || numLieutenants2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -275,7 +271,7 @@ public class Piece {
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==6 && (numCaptains>0 || numCaptains2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -290,7 +286,7 @@ public class Piece {
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==7 && (numMajors>0 || numMajors2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -305,7 +301,7 @@ public class Piece {
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==8 && (numColonels>0 || numColonels2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -320,7 +316,7 @@ public class Piece {
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==9 && (numGenerals>0 || numGenerals2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -335,7 +331,7 @@ public class Piece {
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==10 && (numMarshalls>0 || numMarshalls2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
@@ -350,7 +346,7 @@ public class Piece {
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==11 && (numBombs>0 || numBombs2>0)){
         if(Board.turn == false){
-            Board.turn = true;
+
             Board.ChangeDelayed();
         }
         else{
