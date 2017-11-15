@@ -4,6 +4,7 @@ package stratego;
 import java.awt.*;
 
 public class Board {
+    
     private final static int NUM_ROWS = 10;
     private final static int NUM_COLUMNS = 10;      
     public static Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];
@@ -11,10 +12,8 @@ public class Board {
     public static int selectedColumn;
     public static boolean selected = false;
     public static boolean Victory = false;
-<<<<<<< Updated upstream
-=======
     
->>>>>>> Stashed changes
+
     public static boolean turn = false;
     
     public static void Reset() {
@@ -26,10 +25,6 @@ public class Board {
             }
             selected = false;
             Victory=false;
-<<<<<<< Updated upstream
-=======
-            
->>>>>>> Stashed changes
             turn = false;
         }
 
@@ -43,7 +38,8 @@ public class Board {
     }
     
     public static void Draw(Graphics2D g) {
-        
+        if(Stratego.start)
+            return;
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
@@ -76,7 +72,8 @@ public class Board {
         
     }
     public static void AddPiecePixel(int xpixel,int ypixel) {
-
+        if(Stratego.start)
+            return;
         
         
         int ydelta = Window.getHeight2()/NUM_ROWS;
@@ -137,6 +134,8 @@ public class Board {
             return(true);
     }
     public static void selectPiece(int xpixel,int ypixel){
+        if(Stratego.start)
+            return;
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
 
@@ -162,6 +161,8 @@ public class Board {
     }
     
     public static void movePiece(int move){
+        if(Stratego.start)
+            return;
         if(board[selectedRow][selectedColumn].getDelayed() || !board[selectedRow][selectedColumn].getMobile())
             return;
         int newRow=0;
@@ -264,7 +265,6 @@ public class Board {
             Victory = true;
             return(true);
          }//attacker is miner and defender is bomb
-<<<<<<< Updated upstream
          else if(board[attackingRow][attackingCol] instanceof Miner
                  && board[defendingRow][defendingCol] instanceof Bomb){
                 board[defendingRow][defendingCol]=null;     
@@ -280,7 +280,6 @@ public class Board {
                 return(true);
              }
         //attacker wins
-=======
          else if(board[attackingRow][attackingCol] instanceof Miner && board[defendingRow][defendingCol] instanceof Bomb){
                 board[defendingRow][defendingCol]=null;     
                 if(board[attackingRow][attackingCol].getRank()<10)
@@ -291,7 +290,6 @@ public class Board {
             board[defendingRow][defendingCol]=null;     
             return(true);
          }//attacker wins
->>>>>>> Stashed changes
          else if(board[defendingRow][defendingCol].getRank()<board[attackingRow][attackingCol].getRank()){
         board[defendingRow][defendingCol]=null; 
         if(board[attackingRow][attackingCol].getRank()<10)

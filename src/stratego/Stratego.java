@@ -21,8 +21,10 @@ public class Stratego extends JFrame implements Runnable {
     Graphics2D g;
 
     Image background;
-    private static boolean deployPhase = true;
+    private static boolean deployPhase = false;
+    public static boolean start = true;
     private static int count = 0;
+    Image startScreen = Toolkit.getDefaultToolkit().getImage("./StartScreen.png");
     
     public static void main(String[] args) {
         Stratego frame = new Stratego();
@@ -31,12 +33,7 @@ public class Stratego extends JFrame implements Runnable {
         frame.setVisible(true);
         
         System.out.println("Welcome to Stratego!");
-        System.out.println("This is the deployment phase, where you will arrange your pieces on your side of the board.");
-        System.out.println("=======================================");
-        Commands.AvailablePieces();
-        System.out.println("Left-click anywhere on your side of the board to place a piece.");
-        System.out.println("Enter Deployment Phase Commands by pressing space first");
-        System.out.println("Waiting on opponent...");
+        
 
     }
 
@@ -45,28 +42,40 @@ public class Stratego extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
 
                 if (e.BUTTON1 == e.getButton() ) {
+                  if(start){
+                      if(e.getX()<Window.getWidth2()/2+160&&e.getX()>Window.getWidth2()/2-30&&
+                           e.getY()<Window.getHeight2()/2+300 &&e.getY()>Window.getHeight2()/2+250){
+                        start = false;
+                      deployPhase = true;
+                      System.out.println("This is the deployment phase, where you will arrange your pieces on your side of the board.");
+        System.out.println("=======================================");
+        Commands.AvailablePieces();
+        System.out.println("Left-click anywhere on your side of the board to place a piece.");
+        System.out.println("Enter Deployment Phase Commands by pressing space first");
+        System.out.println("Waiting on opponent...");
+        return;
+                      }
+                    }
                     
                 if(deployPhase && Board.testSpot(e.getX(),e.getY())){
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
-<<<<<<< Updated upstream
+
                     
                         if(count ==3){
-=======
+
 
                     if(count ==3){
->>>>>>> Stashed changes
+
                         deployPhase = false;                        
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
                         System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
                         System.out.println("Enter Battle Phase Commands by pressing space first:");
                     }
-<<<<<<< Updated upstream
-=======
 
 
->>>>>>> Stashed changes
+
                 }
                 else if(!deployPhase){
                     Board.selectPiece(e.getX(),e.getY());
@@ -77,8 +86,9 @@ public class Stratego extends JFrame implements Runnable {
 
                 }
                 repaint();
+                }
             }
-        });    
+            });   
     
 
 
@@ -99,6 +109,8 @@ public class Stratego extends JFrame implements Runnable {
         addKeyListener(new KeyAdapter() {
 
             public void keyPressed(KeyEvent e) {
+                if(start)
+                    return;
                 if (e.VK_UP == e.getKeyCode()) {
                     if(Board.selected)
                     Board.movePiece(3);
@@ -161,7 +173,20 @@ public class Stratego extends JFrame implements Runnable {
         
         g.drawImage(background,Window.getX(0),Window.getY(0),
             Window.getWidth2(),Window.getHeight2(),this);
-              
+        
+        if(start){
+        g.drawImage(startScreen,Window.getX(0),Window.getY(0),
+            Window.getWidth2(),Window.getHeight2(),this);
+        Color startColor = new Color(84,22,180);
+        g.setColor(startColor);
+        g.fillRect(Window.getWidth2()/2-30,Window.getHeight2()/2+250,130,50);
+        Color wordColor = new Color(255,223,0);
+            g.setColor(wordColor);
+            g.setFont(new Font("ALGERIAN",Font.ITALIC,21));
+            g.drawString("Challenge",Window.getWidth2()/2-25,Window.getHeight2()/2+282); 
+        }
+        
+            
         Board.Draw(g);
         Piece.setObj(this);
         gOld.drawImage(image, 0, 0, null);
@@ -185,7 +210,8 @@ public class Stratego extends JFrame implements Runnable {
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
         Board.Reset();
-        deployPhase = true;
+        deployPhase = false;
+        start = true;
         count = 0;
     }
 /////////////////////////////////////////////////////////////////////////
@@ -198,6 +224,9 @@ public class Stratego extends JFrame implements Runnable {
                 Window.ysize = getSize().height;
             }
             background = Toolkit.getDefaultToolkit().getImage("./background.png");
+            
+            
+
             reset();
 
         }

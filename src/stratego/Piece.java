@@ -25,8 +25,9 @@ public class Piece {
     static int numColonels = 2;
     static int numGenerals = 1;
     static int numMarshalls = 1;
-<<<<<<< Updated upstream
     public static Stratego stratego;
+    
+    Image flag = Toolkit.getDefaultToolkit().getImage("./Flag.PNG");
     Image spy = Toolkit.getDefaultToolkit().getImage("./Spy.PNG");
     Image scout = Toolkit.getDefaultToolkit().getImage("./Scout.PNG");
     Image miner = Toolkit.getDefaultToolkit().getImage("./Miner.PNG");
@@ -37,8 +38,8 @@ public class Piece {
     Image colonel = Toolkit.getDefaultToolkit().getImage("./Colonel.PNG");
     Image general = Toolkit.getDefaultToolkit().getImage("./General.PNG");
     Image marshal = Toolkit.getDefaultToolkit().getImage("./Marshal.PNG");
-=======
-
+    Image bomb = Toolkit.getDefaultToolkit().getImage("./Bomb.PNG");
+    
     static int numBombs2 = 6;
     static int numFlags2 = 1;
     static int numSpies2 = 1;
@@ -51,7 +52,6 @@ public class Piece {
     static int numColonels2 = 2;
     static int numGenerals2 = 1;
     static int numMarshalls2 = 1;    
->>>>>>> Stashed changes
     
     Piece(Color _color, int _row, int _col, int _rank, boolean _mobile){
         color = _color;
@@ -93,20 +93,54 @@ public class Piece {
         
         g.setColor(color); 
         g.fillRect(Window.getX(column*xdelta),Window.getY(row*ydelta),xdelta,ydelta); 
-        g.drawImage(spy, Window.getX(column*xdelta)+10, Window.getY(row*ydelta)+10, xdelta-20, ydelta-20
-                , stratego);
+        if(rank==0)
+            g.drawImage(flag, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10,stratego); 
+        else if(rank==1)
+           g.drawImage(spy, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==2)
+            g.drawImage(scout, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==3)
+            g.drawImage(miner, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego);    
+        else if(rank==4)
+                g.drawImage(sergeant, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==5)
+                g.drawImage(lieutenant, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==6)
+                g.drawImage(captain, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==7)
+                g.drawImage(major, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==8)
+                g.drawImage(colonel, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==9)
+                g.drawImage(general, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==10)
+             g.drawImage(marshal, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        else if(rank==11)
+            g.drawImage(bomb, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10
+                ,stratego); 
+        
         if(rank >= 10)
         {
             g.setColor(Color.BLACK);
-            g.setFont(new Font("Arial",Font.PLAIN,30));
-            g.drawString("" + rank,Window.getX(column*xdelta)+(xdelta/2)-18,Window.getY(row*ydelta)+(ydelta/2)+8); 
+            g.setFont(new Font("Arial",Font.BOLD,13));
+            g.drawString("" + rank,Window.getX(column*xdelta)-20+(xdelta/2)-2,Window.getY(row*ydelta)+(ydelta/2)-10); 
         }
         else
         {
             
             g.setColor(Color.BLACK);
-            g.setFont(new Font("Arial",Font.PLAIN,30));
-            g.drawString("" + rank,Window.getX(column*xdelta)+(xdelta/2)-8,Window.getY(row*ydelta)+(ydelta/2)+8); 
+            g.setFont(new Font("Arial",Font.BOLD,15));
+            g.drawString("" + rank,Window.getX(column*xdelta)-20+(xdelta/2)-3,Window.getY(row*ydelta)+(ydelta/2)-8); 
         }
 
         
@@ -317,21 +351,14 @@ public class Piece {
     public void setHidden(boolean _hidden){
         hidden = _hidden;
     }
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     public void RankUp(){
         rank++;
     }
     public boolean getTeam(){
         return(team);
-<<<<<<< Updated upstream
     }
     public static void setObj(Stratego _obj){
         stratego = _obj;
-=======
->>>>>>> Stashed changes
     }
     
 }
