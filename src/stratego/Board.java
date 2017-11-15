@@ -12,6 +12,11 @@ public class Board {
     public static int selectedColumn;
     public static boolean selected = false;
     public static boolean Victory = false;
+<<<<<<< Updated upstream
+=======
+    
+
+>>>>>>> Stashed changes
     public static boolean turn = false;
     public static int TurnCount = 0;
     
@@ -23,6 +28,10 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             Victory=false;
 
             turn = false;
@@ -69,7 +78,7 @@ public class Board {
                 }
             }
         }  
-        
+        if(!Stratego.redDeploy){
         if(!turn){
         g.setColor(Color.RED);
         g.setFont(new Font("Moire ExtraBold", Font.BOLD, 25));
@@ -88,6 +97,7 @@ public class Board {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Moire ExtraBold", Font.BOLD, 30));
         g.drawString("Victory" ,Window.WINDOW_WIDTH/2 ,Window.WINDOW_HEIGHT/2 );             
+        }
         }
     }
     public static void AddPiecePixel(int xpixel,int ypixel) {
