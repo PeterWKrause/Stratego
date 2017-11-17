@@ -23,11 +23,11 @@ public class Commands {
     }
     
     public static void WhatIsFlag(){
-    System.out.println("- Flag: This immobile unit is the goal of both sides. It is captured by any enemy unit that attacks it, leading to a loss. Base Rank: N/A");        
+    System.out.println("- Flag: This immobile unit is the goal of both sides. It is captured by any enemy unit that attacks it, leading to a loss. Base Rank: 0");        
     }
     
     public static void WhatIsBomb(){
-    System.out.println("- Bomb: This immobile unit destroys any attacking enemy, no matter their rank. The only way they can be removed from the field of battle is if a miner attacks one. Base Rank: N/A");        
+    System.out.println("- Bomb: This immobile unit destroys any attacking enemy, no matter their rank. The only way they can be removed from the field of battle is if a miner attacks one. Base Rank: 11");        
     }
     
     public static void WhatIsSpy(){
@@ -35,7 +35,7 @@ public class Commands {
     }
     
     public static void WhatIsScout(){
-    System.out.println("- Scout: This highly mobile unit can move an unlimited number of squares in any cardinal direction, although they cannot jump over any units. Cannot move and attack in the same round. Base Rank: 2");    
+    System.out.println("- Scout: This highly mobile unit can move two squares in any single cardinal direction given that there is no obstaccle. Cannot move and attack in the same round. Base Rank: 2");    
     }
     
     public static void WhatIsMiner(){

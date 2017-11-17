@@ -53,8 +53,19 @@ public class Stratego extends JFrame implements Runnable {
                       System.out.println("This is the deployment phase, where you will arrange your pieces on your side of the board.");
         System.out.println("=======================================");
         Commands.AvailablePieces();
-        System.out.println("Left-click anywhere on your side of the board to place a piece.");
-        System.out.println("Enter Deployment Phase Commands by pressing space first");
+        Commands.WhatIsBomb();
+        Commands.WhatIsFlag();
+        Commands.WhatIsSpy();
+        Commands.WhatIsScout();
+        Commands.WhatIsMiner();
+        Commands.WhatIsSergeant();
+        Commands.WhatIsLieutenant();
+        Commands.WhatIsCaptain();
+        Commands.WhatIsMajor();
+        Commands.WhatIsColonel();
+        Commands.WhatIsGeneral();
+        Commands.WhatIsMarshall();
+        System.out.println("Left-click anywhere on your side of the board to place a piece. When prompted, enter a piece's rank into the output.");
         return;
                       }
                     }
@@ -63,18 +74,17 @@ public class Stratego extends JFrame implements Runnable {
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
 
-                    if(count ==40){
+                    if(count ==2){
                           Board.turn = true;
                           System.out.println("Waiting on opponent...");
                     }
-                    if(count ==80){
+                    if(count ==4){
                         Board.TurnCount++;
                         deployPhase = false;
                         Board.turn = false;
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
-                        System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
-                        System.out.println("Enter Battle Phase Commands by pressing space first:");
+                        System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");
                     }
                 }
                 else if(!deployPhase){
@@ -153,8 +163,8 @@ public class Stratego extends JFrame implements Runnable {
                     RenderingHints.VALUE_ANTIALIAS_ON);
         }
 //fill background
-        
-        g.setColor(Color.BLACK);
+        Color name = new Color(242,239,113);
+        g.setColor(name);
         g.fillRect(0, 0, Window.xsize, Window.ysize);
 
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};

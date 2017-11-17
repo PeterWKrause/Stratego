@@ -185,13 +185,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numFlags>0){
             numFlags--; 
             return(new Flag(currentColor, zrow, zcol)); }
-            else if(Board.turn){
+            else if(Board.turn && numFlags2>0){
             numFlags2--;
             return(new Flag(currentColor, zrow, zcol)); }}
         else if(_rank==1 && (numSpies>0 || numSpies2>0)){
@@ -200,13 +200,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numSpies>0){
             numSpies--;
             return(new Spy(currentColor, zrow, zcol)); }
-            else if(Board.turn){
+            else if(Board.turn && numSpies2>0){
             numSpies2--;
             return(new Spy(currentColor, zrow, zcol));}}
         else if(_rank==2 && (numScouts>0 || numScouts2>0)){
@@ -215,13 +215,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numScouts>0){
             numScouts--;
             return(new Scout(currentColor, zrow, zcol)); }
-            else if(Board.turn){
+            else if(Board.turn && numScouts2>0){
             numScouts2--;
             return(new Scout(currentColor, zrow, zcol));}}
         else if(_rank==3 && (numMiners>0 || numMiners2>0)){
@@ -230,13 +230,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numMiners>0){
             numMiners--;
             return(new Miner(currentColor, zrow, zcol)); }
-            else if(Board.turn){
+            else if(Board.turn && numMiners2>0){
             numMiners2--;
             return(new Miner(currentColor, zrow, zcol));}}
         else if(_rank==4 && (numSergeants>0 || numSergeants2>0)){
@@ -245,13 +245,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numSergeants>0){
             numSergeants--;
             return(new Piece(currentColor, zrow, zcol, _rank, true)); }
-            else if(Board.turn){
+            else if(Board.turn && numSergeants2>0){
             numSergeants2--;
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==5 && (numLieutenants>0 || numLieutenants2>0)){
@@ -260,13 +260,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numLieutenants>0){
             numLieutenants--;
             return(new Piece(currentColor, zrow, zcol, _rank, true)); }
-            else if(Board.turn){
+            else if(Board.turn && numLieutenants2>0){
             numLieutenants2--;
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==6 && (numCaptains>0 || numCaptains2>0)){
@@ -275,13 +275,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numCaptains>0){
             numCaptains--;
             return(new Piece(currentColor, zrow, zcol, _rank, true)); }
-            else if(Board.turn){
+            else if(Board.turn && numCaptains2>0){
             numCaptains2--;
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==7 && (numMajors>0 || numMajors2>0)){
@@ -290,13 +290,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numMajors>0){
             numMajors--;
             return(new Piece(currentColor, zrow, zcol, _rank, true)); }
-            else if(Board.turn){
+            else if(Board.turn && numMajors2>0){
             numMajors2--;
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==8 && (numColonels>0 || numColonels2>0)){
@@ -305,13 +305,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numColonels>0){
             numColonels--;
             return(new Piece(currentColor, zrow, zcol, _rank, true)); }
-            else if(Board.turn){
+            else if(Board.turn && numColonels>0){
             numColonels--;
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==9 && (numGenerals>0 || numGenerals2>0)){
@@ -320,13 +320,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numGenerals>0){
             numGenerals--;
             return(new Piece(currentColor, zrow, zcol, _rank, true)); }
-            else if(Board.turn){
+            else if(Board.turn && numGenerals2>0){
             numGenerals2--;
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==10 && (numMarshalls>0 || numMarshalls2>0)){
@@ -335,13 +335,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numMarshalls>0){
             numMarshalls--;
             return(new Piece(currentColor, zrow, zcol, _rank, true)); }
-            else if(Board.turn){
+            else if(Board.turn && numMarshalls2>0){
             numMarshalls2--;
             return(new Piece(currentColor, zrow, zcol, _rank, true));}}
         else if(_rank==11 && (numBombs>0 || numBombs2>0)){
@@ -350,13 +350,13 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-            Board.turn = false;
+            
             Board.ChangeDelayed();
         }
-            if(!Board.turn){
+            if(!Board.turn && numBombs>0){
             numBombs--;
             return(new Bomb(currentColor, zrow, zcol)); }
-            else if(Board.turn){
+            else if(Board.turn && numBombs2>0){
             numBombs2--;
             return(new Bomb(currentColor, zrow, zcol));}}
         System.out.println("There are no available units of that rank remaining.");
