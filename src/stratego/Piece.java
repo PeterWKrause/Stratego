@@ -41,12 +41,11 @@ public class Piece {
     Image marshal = Toolkit.getDefaultToolkit().getImage("./Marshal.PNG");
     Image bomb = Toolkit.getDefaultToolkit().getImage("./Bomb.PNG");
     
-<<<<<<< Updated upstream
-=======
 
 
 
->>>>>>> Stashed changes
+
+
     static int numBombs2 = 6;
     static int numFlags2 = 1;
     static int numSpies2 = 1;
@@ -88,6 +87,17 @@ public class Piece {
     {
         return(delayed);
     }
+    public String getName()
+    {
+        return(name);
+    }
+    public String getTeamString()
+    {
+        if(!team)
+        return("red");
+        else
+        return("blue");
+    }
     public void setDelayedTrue(){
         delayed = true;
     }
@@ -128,8 +138,17 @@ public class Piece {
         g.setColor(color); 
         g.fillRect(Window.getX(column*xdelta),Window.getY(row*ydelta),xdelta,ydelta); 
         
-        if(hidden)
-            return;
+        if(color == Color.red && Board.turn!=false)
+            hidden = true;
+        if(color == Color.blue && Board.turn!=true)
+            hidden = true;
+        if(color == Color.red && Board.turn==false)
+            hidden = false;
+        if(color == Color.blue && Board.turn==true)
+            hidden = false;
+        
+        if(!hidden){
+            
         
         if(rank==0)
             g.drawImage(flag, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10,stratego); 
@@ -181,15 +200,13 @@ public class Piece {
             g.drawString("" + rank,Window.getX(column*xdelta)-20+(xdelta/2)-3,Window.getY(row*ydelta)+(ydelta/2)-8); 
         }
         
-<<<<<<< Updated upstream
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial",Font.PLAIN,12));
-        g.drawString("" + name,Window.getX(column*xdelta),Window.getY(row*ydelta)+ydelta); 
-=======
+
+        
+
         g.setColor(Color.black);
         g.setFont(new Font("Arial",Font.BOLD,12));
         g.drawString("" + name,Window.getX(column*xdelta)+1,Window.getY(row*ydelta)+ydelta); 
->>>>>>> Stashed changes
+    }
         
         row = _row;
         column = _column;
@@ -202,7 +219,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+////            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numFlags>0){
@@ -217,7 +238,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+////            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numSpies>0){
@@ -232,7 +257,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numScouts>0){
@@ -247,7 +276,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numMiners>0){
@@ -262,7 +295,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numSergeants>0){
@@ -277,7 +314,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numLieutenants>0){
@@ -292,7 +333,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numCaptains>0){
@@ -307,7 +352,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numMajors>0){
@@ -322,7 +371,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numColonels>0){
@@ -337,7 +390,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numGenerals>0){
@@ -352,7 +409,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numMarshalls>0){
@@ -367,7 +428,11 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
+<<<<<<< Updated upstream
             
+=======
+//            Board.turn = false;
+>>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numBombs>0){

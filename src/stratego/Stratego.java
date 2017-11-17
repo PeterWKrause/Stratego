@@ -47,7 +47,7 @@ public class Stratego extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
 
                 if (e.BUTTON1 == e.getButton() ) {
-                    if(redDeploy)
+                    if(redDeploy || blueDeploy)
                         return;
                   if(start){
                       if(e.getX()<Window.getWidth2()/2+100&&e.getX()>Window.getWidth2()/2-30&&
@@ -78,25 +78,31 @@ public class Stratego extends JFrame implements Runnable {
                 if(deployPhase && Board.testSpot(e.getX(),e.getY())){
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
-<<<<<<< Updated upstream
 
+<<<<<<< Updated upstream
                     if(count ==2){
                           Board.turn = true;
                           System.out.println("Waiting on opponent...");
                     }
                     if(count ==4){
                         Board.TurnCount++;
+=======
+
+                    if(count ==1){
+                          blueDeploy=true;
+                          Board.turn = !Board.turn;
+                          System.out.println("Waiting on opponent...");
+                    }
+                    if(count ==2){
+                        Board.blackBox=true;
+>>>>>>> Stashed changes
                         deployPhase = false;
-                        Board.turn = false;
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
                         System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");
                     }
-=======
+
                     
-                    if(count==2){
-                        blueDeploy=true;
-                    }
                     
 //                        if(count ==3){
 //                        Board.TurnCount++;
@@ -113,7 +119,7 @@ public class Stratego extends JFrame implements Runnable {
 
 
 
->>>>>>> Stashed changes
+
                 }
                 else if(!deployPhase){
                     Board.selectPiece(e.getX(),e.getY());
@@ -121,22 +127,39 @@ public class Stratego extends JFrame implements Runnable {
                 }
 
                 if (e.BUTTON3 == e.getButton()) {
-                    if(redDeploy)
+                    
+                    if(redDeploy){
                         redDeploy=false;
-                    if(blueDeploy)
+                    }
+                    if(blueDeploy){
                         blueDeploy = false;
+                        Board.turn=!Board.turn;
+                        Board.blackBox = true;
+                    }
+                    if(Board.blackBox){
+                        Board.blackBox = false;
+                        Board.turnDone=false;
+                        Board.TurnCount++;
+                        Board.turn=!Board.turn;
+                    }
+                    if(!Board.blackBox && !redDeploy && !blueDeploy){
+                        Board.blackBox = true;
+                        
+                        
+                    }
+                    
                 }
                 
                 repaint();
-<<<<<<< Updated upstream
+
                 }
-            })
-            ;   
-=======
-            }
+            });
+              
+
+            
         
-                });
->>>>>>> Stashed changes
+                
+
     
 
 
@@ -251,8 +274,27 @@ public class Stratego extends JFrame implements Runnable {
             g.drawString("Red player turn around",Window.getWidth2()/2-225,Window.getHeight2()/2+80); 
             g.drawString("Right click when ready",Window.getWidth2()/2-225,Window.getHeight2()/2+280);
         }
-            
+        if(!blueDeploy && !redDeploy)    
         Board.Draw(g);
+        
+        if(Board.blackBox && Board.turnDone ==true && Board.turn){
+            g.setColor(Color.black);
+            g.fillRect(-5, -5, 5000, 5000);
+            g.setColor(Color.yellow);
+            g.setFont(new Font("Britannic Bold",Font.ITALIC,50));
+            g.drawString("Red's turn",Window.getWidth2()/2-225,Window.getHeight2()/2); 
+            g.drawString("Blue player turn around",Window.getWidth2()/2-225,Window.getHeight2()/2+80); 
+            g.drawString("Right click when ready",Window.getWidth2()/2-225,Window.getHeight2()/2+280);
+        }
+        if(Board.blackBox && Board.turnDone == true && !Board.turn){
+            g.setColor(Color.black);
+            g.fillRect(-5, -5, 5000, 5000);
+            g.setColor(Color.yellow);
+            g.setFont(new Font("Britannic Bold",Font.ITALIC,50));
+            g.drawString("Blue's turn",Window.getWidth2()/2-225,Window.getHeight2()/2); 
+            g.drawString("Red player turn around",Window.getWidth2()/2-225,Window.getHeight2()/2+80); 
+            g.drawString("Right click when ready",Window.getWidth2()/2-225,Window.getHeight2()/2+280);
+        }
         Piece.setObj(this);
         gOld.drawImage(image, 0, 0, null);
     }
@@ -319,6 +361,6 @@ public class Stratego extends JFrame implements Runnable {
     public static void decreaseCount(){
     count--;
 }
-    
-    
 }
+    
+   

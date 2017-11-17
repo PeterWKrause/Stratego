@@ -12,11 +12,9 @@ public class Board {
     public static int selectedColumn;
     public static boolean selected = false;
     public static boolean Victory = false;
-<<<<<<< Updated upstream
-=======
-    
+    public static boolean blackBox =false;
+    public static boolean turnDone = false;
 
->>>>>>> Stashed changes
     public static boolean turn = false;
     public static int TurnCount = 0;
     
@@ -28,14 +26,14 @@ public class Board {
                 board[zi][zx] = null;
             }
             selected = false;
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+
             Victory=false;
 
             turn = false;
             TurnCount=0;
+            blackBox = false;
+            turnDone = false;
         }
 
     }
@@ -78,7 +76,7 @@ public class Board {
                 }
             }
         }  
-        if(!Stratego.redDeploy){
+        if(!Stratego.redDeploy && !Stratego.blueDeploy){
         if(!turn){
         g.setColor(Color.RED);
         g.setFont(new Font("Moire ExtraBold", Font.BOLD, 25));
@@ -167,8 +165,11 @@ public class Board {
             return(true);
     }
     public static void selectPiece(int xpixel,int ypixel){
+        if(turnDone)
+            return;
         if(Stratego.start)
             return;
+        
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
 
@@ -183,9 +184,14 @@ public class Board {
             zcol = (xpixel-Window.getX(0))/xdelta;
             zrow = (ypixel-Window.getY(0))/ydelta;
         }
+        
         if(board[zrow][zcol]!=null){
         selectedRow = zrow;
         selectedColumn = zcol;
+        if(board[selectedRow][selectedColumn].getColor()==Color.red&&turn==true)
+            return;
+        if(board[selectedRow][selectedColumn].getColor()==Color.blue&&turn==false)
+            return;
         if(!board[selectedRow][selectedColumn].getMobile())
             return;
          board[selectedRow][selectedColumn].setColor(Color.magenta);
@@ -194,6 +200,8 @@ public class Board {
     }
     
     public static void movePiece(int move){
+        if(turnDone)
+            return;
         if(Stratego.start)
             return;
         if(board[selectedRow][selectedColumn].getDelayed() || !board[selectedRow][selectedColumn].getMobile())
@@ -201,23 +209,14 @@ public class Board {
         int newRow=0;
         int newCol=0;
         boolean test = false;
-        if(turn == false){
-            turn = true;
-            TurnCount++;
-            ChangeDelayed();
-        }
-        else{
-            Board.turn = false;
-            TurnCount++;
-            ChangeDelayed();
-        }
+        
         
         if(move==-1&& selectedColumn!=0){//move left
             if(selectedColumn==4 && (selectedRow==4|| selectedRow==5)){
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             }
             if(selectedColumn==8 && (selectedRow==4|| selectedRow==5)){
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             }
             newCol=selectedColumn-1;
             newRow=selectedRow;
@@ -233,9 +232,9 @@ public class Board {
         }
         else if(move==1&& selectedColumn!=NUM_COLUMNS-1){//move right
             if(selectedColumn==5 && (selectedRow==4|| selectedRow==5))
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             if(selectedColumn==1 && (selectedRow==4|| selectedRow==5))
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             newCol=selectedColumn+1;
             newRow=selectedRow;
             if(board[newRow][newCol]!=null){
@@ -249,9 +248,9 @@ public class Board {
         }
         else if(move==3 && selectedRow!=0){ //move up
             if(selectedRow==6 && (selectedColumn==2|| selectedColumn==3))
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             if(selectedRow==6 && (selectedColumn==6|| selectedColumn==7))
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             newCol=selectedColumn;
             newRow=selectedRow-1;
             if(board[newRow][newCol]!=null){
@@ -265,9 +264,9 @@ public class Board {
         }
         else if(move==4 && selectedRow!=NUM_ROWS-1){ //move down
             if(selectedRow==3 && (selectedColumn==2|| selectedColumn==3))
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             if(selectedRow==3 && (selectedColumn==6|| selectedColumn==7))
-                board[selectedRow][selectedColumn].setDelayedTrue();
+                return;
             newCol=selectedColumn;
             newRow=selectedRow+1;
             if(board[newRow][newCol]!=null){
@@ -289,19 +288,30 @@ public class Board {
         else
         board[newRow][newCol].setColor(Color.blue);
         }
+        if(turn == false && test){
+            turnDone = true;
+            ChangeDelayed();
+        }
+        else if(test && turn){
+            turnDone = true;
+            ChangeDelayed();
+        }
+        
         
 }
      public static boolean strikePiece(int defendingRow, int defendingCol,int attackingRow,int attackingCol){
          //defender is flag
          if(board[defendingRow][defendingCol] instanceof Flag){
-            board[defendingRow][defendingCol]=null;     
-            if(board[attackingRow][attackingCol].getRank()<10)
-            board[attackingRow][attackingCol].RankUp();
+             System.out.println("** A " + board[attackingRow][attackingCol].getTeamString() + " " + board[attackingRow][attackingCol].getName() + " captured the " 
+                + board[defendingRow][defendingCol].getTeamString() + " " + board[defendingRow][defendingCol].getName() + " winning the game! **");
+            board[defendingRow][defendingCol]=null;
             Victory = true;
             return(true);
          }//attacker is miner and defender is bomb
          else if(board[attackingRow][attackingCol] instanceof Miner
                  && board[defendingRow][defendingCol] instanceof Bomb){
+             System.out.println("** A " + board[attackingRow][attackingCol].getTeamString() + " " + board[attackingRow][attackingCol].getName() + " defused a " 
+                + board[defendingRow][defendingCol].getTeamString() + " " + board[defendingRow][defendingCol].getName() + " **");
                 board[defendingRow][defendingCol]=null;     
                 if(board[attackingRow][attackingCol].getRank()<10)
                 board[attackingRow][attackingCol].RankUp();
@@ -310,28 +320,23 @@ public class Board {
          }//attacker is spy and defender is rank 10
          else if(board[attackingRow][attackingCol] instanceof Spy 
                  && board[defendingRow][defendingCol].getRank()==10){
-             
+             System.out.println("** A " + board[attackingRow][attackingCol].getTeamString() + " " + board[attackingRow][attackingCol].getName() + " assasinated a " 
+                + board[defendingRow][defendingCol].getTeamString() + " " + board[defendingRow][defendingCol].getName() + " **");
                 board[defendingRow][defendingCol]=null;     
                 return(true);
              }
-        //attacker wins
-         else if(board[attackingRow][attackingCol] instanceof Miner && board[defendingRow][defendingCol] instanceof Bomb){
-                board[defendingRow][defendingCol]=null;     
-                if(board[attackingRow][attackingCol].getRank()<10)
-                board[attackingRow][attackingCol].RankUp();
-                return(true);      
-         }//attacker is spy and defender is rank 10
-         else if(board[attackingRow][attackingCol] instanceof Spy && board[defendingRow][defendingCol].getRank()==10){
-            board[defendingRow][defendingCol]=null;     
-            return(true);
-         }//attacker wins
+//attacker wins
          else if(board[defendingRow][defendingCol].getRank()<board[attackingRow][attackingCol].getRank()){
+             System.out.println("** A " + board[attackingRow][attackingCol].getTeamString() + " " + board[attackingRow][attackingCol].getName() + " attacked a " 
+                + board[defendingRow][defendingCol].getTeamString() + " " + board[defendingRow][defendingCol].getName() + " and " + board[attackingRow][attackingCol].getTeamString() + " won **");
         board[defendingRow][defendingCol]=null; 
         if(board[attackingRow][attackingCol].getRank()<10)
         board[attackingRow][attackingCol].RankUp();
         return(true);
          }//defender wins
          else if(board[defendingRow][defendingCol].getRank()>board[attackingRow][attackingCol].getRank()){
+             System.out.println("** A " + board[attackingRow][attackingCol].getTeamString() + " " + board[attackingRow][attackingCol].getName() + " attacked a " 
+                + board[defendingRow][defendingCol].getTeamString() + " " + board[defendingRow][defendingCol].getName() + " and " + board[defendingRow][defendingCol].getTeamString() + " won **");
         board[attackingRow][attackingCol]=null;
              board[defendingRow][defendingCol] = board[defendingRow][defendingCol];
              if(board[defendingRow][defendingCol].getRank()<10)
@@ -339,6 +344,8 @@ public class Board {
              return(false);
          }//tie
          else if(board[defendingRow][defendingCol].getRank()==board[attackingRow][attackingCol].getRank()){
+             System.out.println("** A " + board[attackingRow][attackingCol].getTeamString() + " " + board[attackingRow][attackingCol].getName() + " attacked a " 
+                + board[defendingRow][defendingCol].getTeamString() + " " + board[defendingRow][defendingCol].getName() + " and they destroyed each other **");
         board[defendingRow][defendingCol]=null; 
         board[attackingRow][attackingCol]=null;
         return(true);

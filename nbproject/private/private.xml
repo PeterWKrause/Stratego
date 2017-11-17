@@ -3,18 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Miner.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Stratego.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Spy.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Flag.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Piece.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Bomb.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Window.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Board.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Commands.java</file>
-            <file>file:/C:/Users/147003813/Desktop/CS2/Stratego/src/stratego/Scout.java</file>
-=======
             <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Commands.java</file>
             <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Miner.java</file>
             <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Piece.java</file>
@@ -25,7 +13,6 @@
             <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Scout.java</file>
             <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Spy.java</file>
             <file>file:/C:/Users/145004017/Desktop/CS2/Stratego/src/stratego/Stratego.java</file>
->>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
