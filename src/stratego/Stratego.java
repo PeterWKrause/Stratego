@@ -25,7 +25,9 @@ public class Stratego extends JFrame implements Runnable {
     public static boolean start = true;
     private static int count = 0;
     Image startScreen = Toolkit.getDefaultToolkit().getImage("./StartScreen.png");
-    
+    public static boolean redDeploy = false;
+    public static boolean blueDeploy = false;
+    public static int timeCount = 0;
     public static void main(String[] args) {
         Stratego frame = new Stratego();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -45,11 +47,14 @@ public class Stratego extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
 
                 if (e.BUTTON1 == e.getButton() ) {
+                    if(redDeploy)
+                        return;
                   if(start){
-                      if(e.getX()<Window.getWidth2()/2+160&&e.getX()>Window.getWidth2()/2-30&&
+                      if(e.getX()<Window.getWidth2()/2+100&&e.getX()>Window.getWidth2()/2-30&&
                            e.getY()<Window.getHeight2()/2+300 &&e.getY()>Window.getHeight2()/2+250){
                         start = false;
                       deployPhase = true;
+                      redDeploy = true;
                       System.out.println("This is the deployment phase, where you will arrange your pieces on your side of the board.");
         System.out.println("=======================================");
         Commands.AvailablePieces();
@@ -73,6 +78,7 @@ public class Stratego extends JFrame implements Runnable {
                 if(deployPhase && Board.testSpot(e.getX(),e.getY())){
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
+<<<<<<< Updated upstream
 
                     if(count ==2){
                           Board.turn = true;
@@ -86,6 +92,28 @@ public class Stratego extends JFrame implements Runnable {
                         System.out.println("We are now entering the battle phase");
                         System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");
                     }
+=======
+                    
+                    if(count==2){
+                        blueDeploy=true;
+                    }
+                    
+//                        if(count ==3){
+//                        Board.TurnCount++;
+//                        deployPhase = false;
+//                        Board.turn = false;
+//
+//                        System.out.println("=======================================");
+//                        System.out.println("We are now entering the battle phase");
+//                        System.out.println("The goal here is to capture the enemy's flag or eliminate all mobile enemies.");        
+//                        System.out.println("Enter Battle Phase Commands by pressing space first:");
+//                    }
+
+
+
+
+
+>>>>>>> Stashed changes
                 }
                 else if(!deployPhase){
                     Board.selectPiece(e.getX(),e.getY());
@@ -93,12 +121,22 @@ public class Stratego extends JFrame implements Runnable {
                 }
 
                 if (e.BUTTON3 == e.getButton()) {
-
+                    if(redDeploy)
+                        redDeploy=false;
+                    if(blueDeploy)
+                        blueDeploy = false;
                 }
+                
                 repaint();
+<<<<<<< Updated upstream
                 }
             })
             ;   
+=======
+            }
+        
+                });
+>>>>>>> Stashed changes
     
 
 
@@ -195,7 +233,24 @@ public class Stratego extends JFrame implements Runnable {
             g.setFont(new Font("ALGERIAN",Font.ITALIC,21));
             g.drawString("Challenge",Window.getWidth2()/2-25,Window.getHeight2()/2+282); 
         }
-        
+        if(redDeploy){
+            g.setColor(Color.black);
+            g.fillRect(-5, -5, 5000, 5000);
+            g.setColor(Color.yellow);
+            g.setFont(new Font("Britannic Bold",Font.ITALIC,50));
+            g.drawString("Red will now deploy",Window.getWidth2()/2-225,Window.getHeight2()/2); 
+            g.drawString("Blue player turn around",Window.getWidth2()/2-225,Window.getHeight2()/2+80); 
+            g.drawString("Right click when ready",Window.getWidth2()/2-225,Window.getHeight2()/2+280);
+        }
+        if(blueDeploy){
+            g.setColor(Color.black);
+            g.fillRect(-5, -5, 5000, 5000);
+            g.setColor(Color.yellow);
+            g.setFont(new Font("Britannic Bold",Font.ITALIC,50));
+            g.drawString("Blue will now deploy",Window.getWidth2()/2-225,Window.getHeight2()/2); 
+            g.drawString("Red player turn around",Window.getWidth2()/2-225,Window.getHeight2()/2+80); 
+            g.drawString("Right click when ready",Window.getWidth2()/2-225,Window.getHeight2()/2+280);
+        }
             
         Board.Draw(g);
         Piece.setObj(this);
@@ -223,6 +278,9 @@ public class Stratego extends JFrame implements Runnable {
         deployPhase = false;
         start = true;
         count = 0;
+        redDeploy = false;
+        blueDeploy = false;
+        timeCount = 0;
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {
@@ -238,7 +296,9 @@ public class Stratego extends JFrame implements Runnable {
             
 
             reset();
-
+            
+            
+            timeCount++;
         }
     }
 

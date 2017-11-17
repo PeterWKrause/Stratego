@@ -9,7 +9,7 @@ public class Piece {
     private int row;
     private int column;
     private boolean mobile;
-    private boolean hidden;
+    public boolean hidden;
     private boolean team;
     private boolean delayed = false;
     private String name;
@@ -41,6 +41,12 @@ public class Piece {
     Image marshal = Toolkit.getDefaultToolkit().getImage("./Marshal.PNG");
     Image bomb = Toolkit.getDefaultToolkit().getImage("./Bomb.PNG");
     
+<<<<<<< Updated upstream
+=======
+
+
+
+>>>>>>> Stashed changes
     static int numBombs2 = 6;
     static int numFlags2 = 1;
     static int numSpies2 = 1;
@@ -64,6 +70,7 @@ public class Piece {
             team = false;
         else
             team = true;
+        hidden = false;
     }
     public Color getColor()
     {
@@ -120,6 +127,10 @@ public class Piece {
         
         g.setColor(color); 
         g.fillRect(Window.getX(column*xdelta),Window.getY(row*ydelta),xdelta,ydelta); 
+        
+        if(hidden)
+            return;
+        
         if(rank==0)
             g.drawImage(flag, Window.getX(column*xdelta)+5, Window.getY(row*ydelta)+5, xdelta-10, ydelta-10,stratego); 
         else if(rank==1)
@@ -170,9 +181,15 @@ public class Piece {
             g.drawString("" + rank,Window.getX(column*xdelta)-20+(xdelta/2)-3,Window.getY(row*ydelta)+(ydelta/2)-8); 
         }
         
+<<<<<<< Updated upstream
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial",Font.PLAIN,12));
         g.drawString("" + name,Window.getX(column*xdelta),Window.getY(row*ydelta)+ydelta); 
+=======
+        g.setColor(Color.black);
+        g.setFont(new Font("Arial",Font.BOLD,12));
+        g.drawString("" + name,Window.getX(column*xdelta)+1,Window.getY(row*ydelta)+ydelta); 
+>>>>>>> Stashed changes
         
         row = _row;
         column = _column;
