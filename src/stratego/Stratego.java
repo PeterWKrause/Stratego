@@ -28,6 +28,9 @@ public class Stratego extends JFrame implements Runnable {
     public static boolean redDeploy = false;
     public static boolean blueDeploy = false;
     public static int timeCount = 0;
+    
+    static sound titleScreen;
+    
     public static void main(String[] args) {
         Stratego frame = new Stratego();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -79,23 +82,14 @@ public class Stratego extends JFrame implements Runnable {
                     Board.AddPiecePixel(e.getX(),e.getY());
                     count++;
 
-<<<<<<< Updated upstream
-                    if(count ==2){
-                          Board.turn = true;
-                          System.out.println("Waiting on opponent...");
-                    }
-                    if(count ==4){
-                        Board.TurnCount++;
-=======
 
-                    if(count ==1){
+                    if(count ==40){
                           blueDeploy=true;
                           Board.turn = !Board.turn;
                           System.out.println("Waiting on opponent...");
                     }
-                    if(count ==2){
+                    if(count ==80){
                         Board.blackBox=true;
->>>>>>> Stashed changes
                         deployPhase = false;
                         System.out.println("=======================================");
                         System.out.println("We are now entering the battle phase");
@@ -162,13 +156,6 @@ public class Stratego extends JFrame implements Runnable {
 
     
 
-
-    addMouseMotionListener(new MouseMotionAdapter() {
-      public void mouseDragged(MouseEvent e) {
-
-        repaint();
-      }
-    });
 
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseMoved(MouseEvent e) {
@@ -338,7 +325,7 @@ public class Stratego extends JFrame implements Runnable {
             
 
             reset();
-            
+            titleScreen = new sound("titleScreen.wav");            
             
             timeCount++;
         }
@@ -361,6 +348,46 @@ public class Stratego extends JFrame implements Runnable {
     public static void decreaseCount(){
     count--;
 }
+    
+    class sound implements Runnable {
+    Thread myThread;
+    File soundFile;
+    public boolean donePlaying = false;
+    sound(String _name)
+    {
+        soundFile = new File(_name);
+        myThread = new Thread(this);
+        myThread.start();
+    }
+    public void run()
+    {
+        try {
+        AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);
+        AudioFormat format = ais.getFormat();
+    //    System.out.println("Format: " + format);
+        DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+        SourceDataLine source = (SourceDataLine) AudioSystem.getLine(info);
+        source.open(format);
+        source.start();
+        int read = 0;
+        byte[] audioData = new byte[16384];
+        while (read > -1){
+            read = ais.read(audioData,0,audioData.length);
+            if (read >= 0) {
+                source.write(audioData,0,read);
+            }
+        }
+        donePlaying = true;
+
+        source.drain();
+        source.close();
+        }
+        catch (Exception exc) {
+            System.out.println("error: " + exc.getMessage());
+            exc.printStackTrace();
+        }
+    }
+    }    
 }
     
    

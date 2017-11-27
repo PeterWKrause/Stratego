@@ -219,11 +219,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 ////            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numFlags>0){
@@ -238,11 +234,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 ////            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numSpies>0){
@@ -257,11 +249,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numScouts>0){
@@ -276,11 +264,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numMiners>0){
@@ -295,11 +279,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numSergeants>0){
@@ -314,11 +294,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numLieutenants>0){
@@ -333,11 +309,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numCaptains>0){
@@ -352,11 +324,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numMajors>0){
@@ -371,11 +339,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numColonels>0){
@@ -390,11 +354,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numGenerals>0){
@@ -409,11 +369,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numMarshalls>0){
@@ -428,11 +384,7 @@ public class Piece {
             Board.ChangeDelayed();
         }
         else{
-<<<<<<< Updated upstream
-            
-=======
 //            Board.turn = false;
->>>>>>> Stashed changes
             Board.ChangeDelayed();
         }
             if(!Board.turn && numBombs>0){

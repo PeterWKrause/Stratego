@@ -35,7 +35,7 @@ public class Commands {
     }
     
     public static void WhatIsScout(){
-    System.out.println("- Scout: This highly mobile unit can move two squares in any single cardinal direction given that there is no obstaccle. Cannot move and attack in the same round. Base Rank: 2");    
+    System.out.println("- Scout: No special abilities. Base Rank: 2");    
     }
     
     public static void WhatIsMiner(){
